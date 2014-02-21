@@ -1,0 +1,48 @@
+@charset "UTF-8";
+/* CSS Document */
+
+/* Fonts */
+
+@font-face { font-family: Lobster; src: url('font/Lobster.otf'); }
+@font-face { font-family: Bebas; src: url('font/BebasNeueRegular.otf'); }
+@font-face { font-family: BebasBold; src: url('font/BebasNeueBold.otf'); }
+@font-face { font-family: BebasThin; src: url('font/BebasNeueThin.otf'); }
+
+.bebas {font-family: 'Bebas';}
+.bebasBold {font-family: 'BebasBold';}
+.bebasThin {font-family: 'BebasThin';}
+.lobster {font-family: 'Lobster';}
+
+.center {text-align:center;}
+.floatLeft {float:left;}
+.floatRight {float:right;}
+.left {text-align:left;}
+.right {text-align:right;}
+.pagination-centered {margin-left:0 auto;margin-right:0 auto;display:block;}
+
+/* Media Queries */
+
+@media (max-width: 768px) {
+	
+}
+
+@media (max-width: 380px) {
+	
+}
+
+/* DOM styling */
+
+input, button, .btn {
+	outline: 0 !important;
+}
+
+button, label {
+	-webkit-user-select: none; /* Chrome/Safari */        
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* IE10+ */
+}
+
+.navbar-brand {
+	font-size:40px;
+	margin-top:5px;
+}
