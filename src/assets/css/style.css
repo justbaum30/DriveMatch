@@ -42,7 +42,16 @@ button, label {
 	-ms-user-select: none; /* IE10+ */
 }
 
+/* Navbar CSS */
+
 .navbar-brand {
 	font-size:40px;
 	margin-top:5px;
+}
+
+.navbar-default {
+/*	background-color: #428bca;*/
+	border: none;
+	border-radius: 0;
+	color:white;
 }
