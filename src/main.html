@@ -54,6 +54,12 @@
   </div><!-- /.container-fluid -->
 </nav>
 
+{% if username %}
+<p> username </p>
+{% else %}
+<p> not username </p>
+{% endif %}
+
 </header>
 
 {% block content %} {% endblock %}

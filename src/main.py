@@ -17,6 +17,8 @@
 import os
 import urllib
 
+from google.appengine.api import users
+
 import webapp2
 import jinja2
 
@@ -25,10 +27,24 @@ JINJA_ENVIRONMENT = jinja2.Environment(
     extensions=['jinja2.ext.autoescape'],
     autoescape=True)
 
-class MainPage(webapp2.RequestHandler):
+class CommonHandler(webapp2.RequestHandler):
+    def setupUser(self):
+        self.user = users.get_current_user()
+        self.templateValues = {}
+        if self.user:
+            self.templateValues['logout'] = users.create_logout_url('/')
+            self.templateValues['username'] = self.user.nickname()
+        else:
+            self.templateValues['login'] = users.create_login_url('/')
+
+    def render(self,htmlFile):
+        template = JINJA_ENVIRONMENT.get_template(htmlFile)
+        self.response.out.write(template.render(self.templateValues))
+
+class MainPage(CommonHandler):
     def get(self):
-        template = JINJA_ENVIRONMENT.get_template('main.html')
-        self.response.write(template.render({}))
+        self.setupUser()
+        self.render('main.html')
 
 app = webapp2.WSGIApplication([
     ('/', MainPage)
