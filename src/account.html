@@ -32,7 +32,8 @@
     <br><br>
     <h5>Status: </h5>I do not currently have a ride.
     <div class="btn-group">
-  		<button type="button" class="btn btn-default change-info-button">Edit My Info</button>
+  		<button type="button" class="btn btn-default view-carpool-button">View Car Pool</button>
+      <button type="button" class="btn btn-default change-info-button">Edit My Info</button>
   		<button type="button" class="btn btn-default leave-event-button">Leave Event</button>
 	</div>
   <a class="btn btn-info pull-right invitationButton" href="/signup{{ event.urlsuffix }}">Send Invitations</a>
@@ -79,6 +80,7 @@
      departing on <b>{{ event.departureTime }}</b> and returning on <b>{{ event.returnTime }}</b>.
     <br><br>
     <div class="btn-group">
+      <button type="button" class="btn btn-default view-carpool-button">View Car Pool</button>
   		<button type="button" class="btn btn-default edit-event-button">Edit Event</button>
   		<button type="button" class="btn btn-default cancel-event-button">Cancel Event</button>
 	   </div>

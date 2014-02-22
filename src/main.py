@@ -216,8 +216,8 @@ class CreateEvent(CommonHandler):
 
         newEvent.put()
 
-        email = mail.EmailMessage(sender = "Justin B <drive-match@appspot.gserviceaccount.com",
-                                to = "Justinnnn <justbaum30@gmail.com",
+        email = mail.send_mail(sender = "Justin B <drive-match@appspot.gserviceaccount.com",
+                                to = "Justinnnn <justbaum30@gmail.com>",
                                 subject = "You got a nice thing",
                                 body = """
 Hey you.
