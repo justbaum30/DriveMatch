@@ -190,7 +190,7 @@ class CreateEvent(CommonHandler):
 
     def post(self):
         self.setupUser();
-
+		
         dateTimeFormat = "%B %d %Y %H:%M %p"
         departureDateTime = datetime.datetime.strptime(self.request.get('departureDateTime'), dateTimeFormat)
         returnDateTime = datetime.datetime.strptime(self.request.get('returnDateTime'), dateTimeFormat)
@@ -215,18 +215,6 @@ class CreateEvent(CommonHandler):
             newEvent.guests.append(guest)
 
         newEvent.put()
-
-        email = mail.send_mail(sender = "Justin B <drive-match@appspot.gserviceaccount.com",
-                                to = "Justinnnn <justbaum30@gmail.com>",
-                                subject = "You got a nice thing",
-                                body = """
-Hey you.
-Hope you're well. This is great.
-
-Thanks,
-Justin
-""")
-        email.send()
         
         self.response.out.write(json.dumps(newEvent.urlsuffix))
 
@@ -259,6 +247,7 @@ class Events(CommonHandler):
         self.setupUser()
         self.render('events.html')
 
+<<<<<<< HEAD
 class Carpools(CommonHandler):
     def post(self):
         self.setupUser()
@@ -277,6 +266,8 @@ class Carpools(CommonHandler):
         logging.critical(carpools)
         self.response.out.write(json.dumps(carpools))
 
+=======
+>>>>>>> bc1bec2ff5739dd898903c8259faf8290a53c9b2
 class Signup(CommonHandler):
 
     def get(self):
@@ -339,7 +330,6 @@ app = webapp2.WSGIApplication([
     ('/create', CreateEvent),
     ('/account', Account),
     ('/events', Events),
-    ('/carpools', Carpools),
     ('/signup', Signup),
 	('/logout', LogoutHandler),
 	('/example', HomeHandler)
