@@ -247,7 +247,7 @@ class Events(CommonHandler):
         self.setupUser()
         self.render('events.html')
 
-<<<<<<< HEAD
+
 class Carpools(CommonHandler):
     def post(self):
         self.setupUser()
@@ -266,8 +266,6 @@ class Carpools(CommonHandler):
         logging.critical(carpools)
         self.response.out.write(json.dumps(carpools))
 
-=======
->>>>>>> bc1bec2ff5739dd898903c8259faf8290a53c9b2
 class Signup(CommonHandler):
 
     def get(self):
