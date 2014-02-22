@@ -26,7 +26,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand bebasThin" href="#">Drive <span class="bebasBold">Match</span></a>
+      <a class="navbar-brand bebasThin" href="/">Drive <span class="lobster">Match</span><!-- <small style="font-family:'Garamond','Bebas';font-size:40px;">r</small> --></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -39,17 +39,7 @@
         {% endif %}
       </div>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Link</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
-        </li>
+        <li><a href="/account">My Account</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
@@ -57,11 +47,15 @@
 
 </header>
 
+<div class="container">
+
 {% block content %} {% endblock %}
 
+</div>
+
 <footer>
-<nav class="navbar navbar-fixed-bottom footerNav" role="navigation" style="padding:3px 0px;min-height:0px;background-color:gray;color:white;">
-  <div class="container" style="margin:0;">
+<nav class="navbar navbar-fixed-bottom footerNav" role="navigation">
+  <div class="footerContainer">
     &copy 2014 Drive Match<span class="pull-right"><a href="mailto:info@drivematchr.com">info@drivematchr.com</a></span>
   </div>
 </nav>

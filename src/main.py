@@ -21,6 +21,10 @@ from google.appengine.api import users
 
 import webapp2
 import jinja2
+import logging
+import cgi
+
+from google.appengine.ext import ndb
 
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
@@ -46,6 +50,32 @@ class MainPage(CommonHandler):
         self.setupUser()
         self.render('main.html')
 
+class Index(CommonHandler):
+    def get(self):
+        self.setupUser()
+        self.render('index.html')
+
+class CreateEvent(webapp2.RequestHandler):
+
+    def get(self):
+        template = JINJA_ENVIRONMENT.get_template('create.html')
+        self.response.write(template.render({}))
+
+class Account(webapp2.RequestHandler):
+
+    def get(self):
+        template = JINJA_ENVIRONMENT.get_template('account.html')
+        self.response.write(template.render({}))
+
+class Events(webapp2.RequestHandler):
+
+    def get(self):
+        template = JINJA_ENVIRONMENT.get_template('events.html')
+        self.response.write(template.render({}))
+
 app = webapp2.WSGIApplication([
-    ('/', MainPage)
+    ('/', Index),
+    ('/create', CreateEvent),
+    ('/account', Account),
+    ('/events', Events)
 ], debug=True)

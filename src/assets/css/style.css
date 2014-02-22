@@ -46,18 +46,18 @@ button, label {
 
 .navbar-brand {
 	font-size:40px;
-	margin-top:5px;
-}
+/*	margin-top:5px;
+*/}
 
 .navbar-default {
-	background-color: orange;
+	background-color: rgba(255,200,100,0.8);
 	border: none;
 	border-radius: 0;
 	color:white;
-	top:0;
+/*	top:0;
 	position:fixed;
 	z-index:100;
-	width:100%;
+	width:100%;*/
 }
 
 .footerNav {
@@ -68,5 +68,12 @@ button, label {
 }
 .footerNav a {
 	color:white;
-	margin-right:0;
+}
+
+.footerContainer {
+	margin:0 10px;
+}
+
+.jumbotron {
+	background: none;
 }
