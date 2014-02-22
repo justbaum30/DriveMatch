@@ -89,7 +89,6 @@ class CreateEvent(CommonHandler):
                             host = host,
                             guests = [],
                             carpools = [])
-        newEvent.guests.append(host)
         newEvent.put()
 
 class Account(CommonHandler):
