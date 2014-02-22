@@ -1,4 +1,5 @@
 $(function() {
+	var selectedPeople = [];
 	$('.datetimepicker').datetimepicker({
     	format: 'MM dd yyyy hh:ii P',
     	autoclose: true,
@@ -18,7 +19,7 @@ $(function() {
 				departureLocation: $('#departureLocation').val(),
 				departureDateTime: $('#eventDepartureTime').val(),
 				returnDateTime: $('#eventReturnTime').val(),
-				guests: []
+				guests: selectedPeople
 			},
 			success: function() { 
 				console.log("success!"); 
@@ -66,6 +67,7 @@ $(function() {
 					tableData.push(tableItem);
 				}
 			}
+			selectedPeople = tableData;
 			updateProgress(100);
 			$('#upload-progress').hide();
 			initializeTable(tableData);
