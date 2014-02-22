@@ -55,21 +55,7 @@
 
 {% block foot %}
 
-<script type="text/javascript">
-	$(function() {
-		$('#canDriveInfo').hide();
-		$('input[name="canDrive"]').on('change', function() {
-			if ($('#canDrive').is(':checked'))
-				$('#canDriveInfo').fadeIn('fast');
-			else {
-				$('#canDriveInfo').hide();
-				$('#totalSeats').val('');
-				$('#seatsAvailable').val('');
-				$('#gasMileage').val('');
-			}
-		});
-	});
-</script>
+<script type="text/javascript" src="assets/scripts/signup.js"></script>
 
 <script type="text/javascript">
 

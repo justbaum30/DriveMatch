@@ -18,6 +18,7 @@ import os
 import urllib
 
 from google.appengine.api import users
+from google.appengine.api import mail
 
 import webapp2
 import jinja2
@@ -98,6 +99,18 @@ class CreateEvent(CommonHandler):
             newEvent.guests.append(guest)
 
         newEvent.put()
+
+        email = mail.EmailMessage(sender = "Justin B <drive-match@appspot.gserviceaccount.com",
+                                to = "Justinnnn <justbaum30@gmail.com",
+                                subject = "You got a nice thing",
+                                body = """
+Hey you.
+Hope you're well. This is great.
+
+Thanks,
+Justin
+""")
+        email.send()
         
         self.response.out.write(json.dumps(newEvent.urlsuffix))
 
@@ -153,20 +166,35 @@ class Signup(CommonHandler):
     def post(self):
         self.setupUser();
 
-        canDrive = self.request.get('canDrive')
-        totalSeats = self.request.get('totalSeats')
-        seatsAvailable = self.request.get('seatsAvailable')
-        milesPerGallon = self.request.get('gasMileage')
-        nickname = self.request.get('nameInput')
-        email = self.request.get('emailInput')
+        account = totalSeats = availableSeats = milesPerGallon = None
+        canDrive = self.request.get('canDrive') != ''
+        if canDrive == True:
+            totalSeats = int(self.request.get('totalSeats'))
+            availableSeats = int(self.request.get('availableSeats'))
+            milesPerGallon = float(self.request.get('gasMileage'))
 
-        guest = model.Guest(email = email,
+        if not self.user:
+            nickname = self.request.get('nameInput')
+            email = self.request.get('emailInput')
+        else:
+            account = self.account
+            nickname = self.user.nickname()
+            email = self.user.email()
+
+        guest = model.Guest(account = account,
+                            email = email,
                             nickname = nickname,
                             canDrive = canDrive,
                             totalSeats = totalSeats,
                             availableSeats = availableSeats,
                             milesPerGallon = milesPerGallon)
         guest.put()
+
+        hostName = self.request.get('hostName')
+        eventName = self.request.get('eventName')
+        event = model.Event.query_events_with_event_name(hostName, eventName).get()
+        event.guests.append(guest)
+        event.put()
 
 app = webapp2.WSGIApplication([
     ('/', Index),
