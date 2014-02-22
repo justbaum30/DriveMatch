@@ -16,7 +16,7 @@
 <h2>Upcoming Events</h2>
 
 {% if not HasEvents %}
-    <h3>No events yet. <a href="./create">Create a new event?</a></h3>
+    <h3>No upcoming events. <a href="./create">Create a new event?</a></h3>
 {% endif %}
 
 {% for event in FutureGuestEvents %}
@@ -107,6 +107,7 @@
 {% endfor %}
 
 {% if HasPastEvents %}
+<hr>
 <h2>Past Events</h2>
 
 {% for event in PastGuestEvents %}

@@ -5,11 +5,43 @@
 {% block content %}
 
 <!-- Page Content -->
-	<form role="form">
-		<div class="form-group">
+	<h1 class="lobster" style="font-size:60px;text-align:center;">{ Event Name } Sign Up</h1>
 
-		</div>
-	</form>
+<div role="form" class="" style="margin: 0 auto;max-width:700px;">
+  <hr>
+  <p>Hello! You are invited to join the car pool hosted by { Host User Name }. The car pool will leave for { destination} from { origin } on { departureDate }, and return on { returnDate }. Please fill out your information below to join the car pool!</p>
+  <hr>
+  <div class="radio">
+  <label>
+    <input type="radio" name="canDrive" id="canDrive" value=true checked>
+    I can drive.
+  </label>
+</div>
+<div class="radio">
+  <label>
+    <input type="radio" name="canDrive" id="isPassenger" value=false checked>
+    I will need a ride.
+  </label>
+</div>
+
+
+  {% if not signedIn %}
+  <div class="form-group">
+    <label for="nameInput">Name</label>
+    <input type="text" class="form-control" id="nameInput" placeholder="Enter name">
+  </div>
+  <div class="form-group">
+    <label for="emailInput">Email address</label>
+    <input type="email" class="form-control" id="emailInput" placeholder="Enter email">
+  </div>
+  {% endif %}
+
+  <div class="form-group">
+    <button type="submit" id="createSubmitButton" class="btn btn-default pull-right">Submit</button>
+  </div>
+  <br>
+</div>
+<br><br>
 
 {% endblock %}
 

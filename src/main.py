@@ -121,9 +121,16 @@ class Events(CommonHandler):
         self.setupUser()
         self.render('events.html')
 
+class SignUp(CommonHandler):
+
+    def get(self):
+        self.setupUser()
+        self.render('signup.html')
+
 app = webapp2.WSGIApplication([
     ('/', Index),
     ('/create', CreateEvent),
     ('/account', Account),
-    ('/events', Events)
+    ('/events', Events),
+    ('/signup', SignUp)
 ], debug=True)
