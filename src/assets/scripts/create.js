@@ -24,3 +24,8 @@ $(function() {
 		});
 	});
 });
+
+// Update the file upload progress bar
+function updateProgress(newValue){
+  $('.progress-bar').css('width', newValue+'%').attr('aria-valuenow', newValue); 
+}
