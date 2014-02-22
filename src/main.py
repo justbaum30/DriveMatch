@@ -76,13 +76,16 @@ class CreateEvent(CommonHandler):
         dateTimeFormat = "%B %d %Y %H:%M %p"
         departureDateTime = datetime.datetime.strptime(self.request.get('departureDateTime'), dateTimeFormat)
         returnDateTime = datetime.datetime.strptime(self.request.get('returnDateTime'), dateTimeFormat)
+
+        departureLocation = model.EventLocation(streetAddress = self.request.get('departureLocation'))
+        eventLocation = model.EventLocation(streetAddress = self.request.get('eventLocation'))
         
         host = model.Guest(account = self.account, nickname = self.user.nickname(), email = self.user.email())
         newEvent = model.Event(name = self.request.get('eventName'),
-                            eventLocation = ndb.GeoPt(self.request.get('eventLocation')),
-                            departureLocation = self.request.get('departureLocation'),
                             departureTime = departureDateTime,
                             returnTime = returnDateTime,
+                            eventLocation = eventLocation,
+                            departureLocation = departureLocation,
                             host = host,
                             guests = [],
                             carpools = [])
@@ -91,6 +94,24 @@ class CreateEvent(CommonHandler):
 class Account(CommonHandler):
     def get(self):
         self.setupUser();
+        self.templateValues['UserName'] = self.user.nickname()
+
+        self.templateValues['FutureHostedEvents'] = model.Event.query_future_events_with_host(self.account)
+        if self.templateValues['FutureHostedEvents'].get():
+            self.templateValues['HasFutureEvents'] = True
+
+        self.templateValues['FutureGuestEvents'] = model.Event.query_future_events_with_guest(self.account)
+        if self.templateValues['FutureGuestEvents'].get():
+            self.templateValues['HasFutureEvents'] = True
+
+        self.templateValues['PastHostedEvents'] = model.Event.query_past_events_with_host(self.account)
+        if self.templateValues['PastHostedEvents'].get():
+            self.templateValues['HasPastEvents'] = True
+
+        self.templateValues['PastGuestEvents'] = model.Event.query_past_events_with_guest(self.account)
+        if self.templateValues['PastGuestEvents'].get():
+            self.templateValues['HasPastEvents'] = True
+
         self.render('account.html')
 
 class Events(CommonHandler):
