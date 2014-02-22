@@ -32,7 +32,10 @@ function updateProgress(newValue){
 
 // Google places autocomplete
 var startLocation = document.getElementById('eventLocation');
-var autocompleteEnd = new google.maps.places.Autocomplete(startLocation);
+var autocompleteStart = new google.maps.places.Autocomplete(startLocation);
+
+var endLocation = document.getElementById('departureLocation');
+var autocompleteEnd = new google.maps.places.Autocomplete(endLocation);
 
 // dummy user data
 var userData = [{"personName":"Jacob","personEmail":"bsabugler@gmail.com"},{"personName":"Jacob","personEmail":"bsabugler@gmail.com"},{"personName":"Jacob","personEmail":"bsabugler@gmail.com"},{"personName":"Jacob","personEmail":"bsabugler@gmail.com"},{"personName":"Jacob","personEmail":"bsabugler@gmail.com"},{"personName":"Jacob","personEmail":"bsabugler@gmail.com"},{"personName":"Jacob","personEmail":"bsabugler@gmail.com"},{"personName":"Jacob","personEmail":"bsabugler@gmail.com"},{"personName":"Jacob","personEmail":"bsabugler@gmail.com"},{"personName":"Jacob","personEmail":"bsabugler@gmail.com"},{"personName":"Jacob","personEmail":"bsabugler@gmail.com"},{"personName":"Jacob","personEmail":"bsabugler@gmail.com"},{"personName":"Jacob","personEmail":"bsabugler@gmail.com"},{"personName":"Jacob","personEmail":"bsabugler@gmail.com"},{"personName":"Jacob","personEmail":"bsabugler@gmail.com"},{"personName":"Jacob","personEmail":"bsabugler@gmail.com"},{"personName":"Jacob","personEmail":"bsabugler@gmail.com"},{"personName":"Jacob","personEmail":"bsabugler@gmail.com"},{"personName":"Jacob","personEmail":"bsabugler@gmail.com"},{"personName":"Jacob","personEmail":"bsabugler@gmail.com"},{"personName":"Jacob","personEmail":"bsabugler@gmail.com"},{"personName":"Jacob","personEmail":"bsabugler@gmail.com"}];
