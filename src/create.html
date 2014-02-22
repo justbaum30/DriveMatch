@@ -6,7 +6,10 @@
 
 <!-- Page Content -->
 
-<div role="form" class="">
+<h1 class="lobster" style="font-size:60px;text-align:center;">Create an Event</h1>
+
+<div role="form" class="" style="margin: 0 auto;max-width:700px;">
+  <hr>
   {% if not signedIn %}
   <div class="form-group">
     <label for="emailInput">Email address</label>
@@ -45,7 +48,7 @@
     <input type="file" id="exampleInputFile">
     <p class="help-block">Accepts contacts in .csv format</p>
 
-    <div id="upload-progress" style="width:50%;margin:0 auto;">
+    <div id="upload-progress" class="hidden" style="width:50%;margin:0 auto;">
     <h4>Analyzing your contacts...</h4>
     <div class="progress progress-striped active">
       <div class="progress-bar"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width:45%">
@@ -59,7 +62,7 @@
 
 
 
-    <div id="guestTable" class="">
+    <div id="guestTable" class="hidden">
       <div id="tableWrapper">
       <table id="dataTable" class="display" cellspacing="0" width="100%">
         <thead>
@@ -77,10 +80,11 @@
 
 
     <br>
-    <button type="submit" id="createSubmitButton" class="btn btn-default">Submit</button>
+    <button type="submit" id="createSubmitButton" class="btn btn-default pull-right">Submit</button>
   </div>
   <br>
 </div>
+<br><br>
 
 {% endblock %}
 
