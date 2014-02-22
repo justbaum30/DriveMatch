@@ -61,5 +61,5 @@ class Event(ndb.Model):
         return Event.query(Event.host == queryHost)
 
     @classmethod
-    def query_events_with_guest(cls, queryGuest):
-        return Event.query(Event.guests.IN([queryGuest]))
+    def query_events_with_account(cls, queryAccount):
+        return Event.query(Event.guests.account == queryAccount)
