@@ -5,7 +5,7 @@ class Account(ndb.Model):
     user = ndb.UserProperty()
 
     @classmethod
-    def query_account_for_user(queryUser):
+    def query_account_for_user(cls, queryUser):
         return Account.query(Account.user == queryUser)
 
 class Guest(ndb.Model):
@@ -18,7 +18,7 @@ class Guest(ndb.Model):
     milesPerGallon = ndb.FloatProperty()
 
     @classmethod
-    def query_guest_instances_for_account(queryAccount):
+    def query_guest_instances_for_account(cls, queryAccount):
         return Guest.query(Guest.account == queryAccount)
 
 class Carpool(ndb.Model):
@@ -32,12 +32,12 @@ class Carpool(ndb.Model):
     returnLocation = ndb.StringProperty()
 
     @classmethod
-    def query_carpools_for_guest(queryGuest):
+    def query_carpools_for_guest(cls, queryGuest):
         return Carpool.query(ndb.OR(Carpool.driver == queryGuest,
                                     Carpool.passengers.IN([queryGuest])))
 
     @classmethod
-    def query_carpools_for_driver(queryDriver):
+    def query_carpools_for_driver(cls, queryDriver):
         return Carpool.query(Carpool.driver == queryDriver)
 
     def seats_remaining():
@@ -57,8 +57,8 @@ class Event(ndb.Model):
     carpools = ndb.LocalStructuredProperty(Carpool, repeated = True)
     
     @classmethod
-    def query_events_with_host(queryHost):
+    def query_events_with_host(cls, queryHost):
         return Event.query(Event.host == queryHost)
 
-    def query_events_with_guest(queryGuest):
+    def query_events_with_guest(cls, queryGuest):
         return Event.query(Event.guests.IN([queryGuest]))
