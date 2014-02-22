@@ -84,6 +84,7 @@ class CreateEvent(CommonHandler):
                             host = host,
                             guests = [],
                             carpools = [])
+        newEvent.guests.append(host)
         newEvent.put()
 
 class Account(CommonHandler):
@@ -93,7 +94,12 @@ class Account(CommonHandler):
         self.templateValues['UserName'] = self.user.nickname()
 
         self.templateValues['HostedEvents'] = model.Event.query_events_with_host(self.account)
+        if self.templateValues['HostedEvents'].get():
+            self.templateValues['HasEvents'] = True
+
         self.templateValues['GuestEvents'] = model.Event.query_events_with_guest(self.account)
+        if self.templateValues['GuestEvents'].get():
+            self.templateValues['HasEvents'] = True
 
         self.render('account.html')
 

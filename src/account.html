@@ -15,6 +15,10 @@
 <div class="event-wrap col-sm-8 col-sm-offset-4">
 <h2>Upcoming Events</h2>
 
+{% if not HasEvents %}
+    <h3>No events yet. <a href="./create">Create a new event?</a></h3>
+{% endif %}
+
 {% for event in GuestEvents %}
 <div class="media well">
   <a class="pull-left" href="#">
@@ -22,7 +26,7 @@
   </a>
   <div class="media-body">
     <h4 class="media-heading">{{ event.name }}</h4>
-    You participated in a ride share to <b>{{ event.eventLocation }}</b>,
+    You are a participant in a ride share to <b>{{ event.eventLocation }}</b>,
      departing on <b>{{ event.departureTime }}</b> and returning on <b>{{ event.returnTime }}</b>.
     <br><br>
     <div class="btn-group">
@@ -41,7 +45,7 @@
   </a>
   <div class="media-body">
     <h4 class="media-heading">{{ event.name }}</h4>
-    You created a ride share to <b>{{ event.eventLocation }}</b>,
+    You are the coordinator for a ride share to <b>{{ event.eventLocation }}</b>,
      departing on <b>{{ event.departureTime }}</b> and returning on <b>{{ event.returnTime }}</b>.
     <br><br>
     <div class="btn-group">
