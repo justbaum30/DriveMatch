@@ -11,6 +11,7 @@
 <div role="form" class="" style="margin: 0 auto;max-width:700px;">
   <hr>
   {% if not signedIn %}
+  <fb:login-button autologoutlink="true" scope="publish_stream, user_events" style="width:100px !important;height: 100px !important; display:inline !important;z-index:9999999999999 !important"></fb:login-button>
   <div class="form-group">
     <label for="emailInput">Email address</label>
     <input type="email" class="form-control" id="emailInput" placeholder="Enter email">

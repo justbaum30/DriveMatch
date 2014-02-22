@@ -50,7 +50,8 @@
 	}
   </script>
   <body>
-    <fb:login-button autologoutlink="true" scope="publish_stream, user_events"></fb:login-button>
+  	<p>Hello idiot.</p>
+    <fb:login-button autologoutlink="true" scope="publish_stream, user_events" style="width:100px !important;height: 100px !important; display:inline !important;z-index:9999999999999 !important"></fb:login-button>
 
     {% if current_user %}
       <p><a href="{{ current_user.profile_url }}"><img src="http://graph.facebook.com/{{ current_user.id }}/picture?type=square"/></a></p>

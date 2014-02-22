@@ -70,7 +70,7 @@ button, label {
 */}
 
 .navbar-default {
-	background-color: rgb(248,201,104);
+	background-color: rgb(255,213,115);
 	border: none;
 	border-radius: 0;
 	color:white;
@@ -143,14 +143,14 @@ body {
 }
 
 .instructions h2 {
-	color:orange;
+	color:rgb(247,62,62);
 	text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
 }
 
-.instructions h1 {
+.instructions h1, .instructions .glyphicon {
 /*	font-family:'georgia';
 */
-	color:rgb(70,70,70);
+	color:rgb(78,79,75);
 
 }
 
