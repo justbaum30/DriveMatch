@@ -36,10 +36,10 @@ class CommonHandler(webapp2.RequestHandler):
         self.user = users.get_current_user()
         self.templateValues = {}
         if self.user:
-            self.templateValues['logout'] = users.create_logout_url('/')
-            self.templateValues['username'] = self.user.nickname()
+            self.templateValues['signedIn'] = True
+            self.templateValues['loginUrl'] = users.create_logout_url('/')
         else:
-            self.templateValues['login'] = users.create_login_url('/')
+            self.templateValues['loginUrl'] = users.create_login_url('/')
 
     def render(self,htmlFile):
         template = JINJA_ENVIRONMENT.get_template(htmlFile)

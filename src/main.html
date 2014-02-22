@@ -31,27 +31,19 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <form class="navbar-form navbar-right" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Username">
-        </div>
-        <div class="form-group">
-          <input type="password" class="form-control" placeholder="Password">
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form>
+      <div class="navbar-form navbar-right">
+        {% if signedIn %}
+        <a href="{{ loginUrl }}" class="btn btn-default">Logout</a>
+        {% else %}
+        <a href="{{ loginUrl }}" class="btn btn-default">Login</a>
+        {% endif %}
+      </div>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="/account">My Account</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-
-{% if username %}
-<p> username </p>
-{% else %}
-<p> not username </p>
-{% endif %}
 
 </header>
 
