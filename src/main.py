@@ -74,10 +74,6 @@ class CreateEvent(CommonHandler):
     def post(self):
         self.setupUser();
 
-        test = json.loads(self.request.get('guests'))
-        logging.critical(test)
-        logging.critical(test[0]['personName'])
-
         dateTimeFormat = "%B %d %Y %H:%M %p"
         departureDateTime = datetime.datetime.strptime(self.request.get('departureDateTime'), dateTimeFormat)
         returnDateTime = datetime.datetime.strptime(self.request.get('returnDateTime'), dateTimeFormat)
@@ -100,6 +96,8 @@ class CreateEvent(CommonHandler):
                             carpools = [])
         newEvent.urlsuffix = newEvent.generate_url_suffix(newEvent.name, newEvent.host.nickname)
         newEvent.put()
+        
+        self.response.out.write(json.dumps(newEvent.urlsuffix))
 
 class Account(CommonHandler):
 
