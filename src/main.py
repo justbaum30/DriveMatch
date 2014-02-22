@@ -89,20 +89,25 @@ class CreateEvent(CommonHandler):
         newEvent.put()
 
 class Account(CommonHandler):
-
     def get(self):
         self.setupUser();
         self.render('account.html')
 
 class Events(CommonHandler):
-
     def get(self):
         self.setupUser()
         self.render('events.html')
+
+class ParseCSV(CommonHandler):
+    def post(self):
+        self.setupUser()
+        logging.critical(self.request.get('filename'))
+
 
 app = webapp2.WSGIApplication([
     ('/', Index),
     ('/create', CreateEvent),
     ('/account', Account),
-    ('/events', Events)
+    ('/events', Events),
+    ('/parsecsv', ParseCSV)
 ], debug=True)
