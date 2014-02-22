@@ -80,10 +80,6 @@ class CreateEvent(CommonHandler):
 
         departureLocation = model.EventLocation(streetAddress = self.request.get('departureLocation'))
         eventLocation = model.EventLocation(streetAddress = self.request.get('eventLocation'))
-        
-
-        logging.critical(self.request.get_all('guests'))
-
 
         host = model.Guest(account = self.account, nickname = self.user.nickname(), email = self.user.email())
         newEvent = model.Event(name = self.request.get('eventName'),
@@ -95,6 +91,12 @@ class CreateEvent(CommonHandler):
                             guests = [],
                             carpools = [])
         newEvent.urlsuffix = newEvent.generate_url_suffix(newEvent.name, newEvent.host.nickname)
+       
+        json_guests = json.loads(self.request.get('guests'))
+        for json_guest in json_guests:
+            guest = model.Guest(email = json_guest['personEmail'], nickname = json_guest['personName'])
+            newEvent.guests.append(guest)
+
         newEvent.put()
         
         self.response.out.write(json.dumps(newEvent.urlsuffix))
