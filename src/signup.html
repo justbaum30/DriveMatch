@@ -11,35 +11,43 @@
   <hr>
   <p>Hello! You are invited to join the car pool hosted by { Host User Name }. The car pool will leave for { destination } from { origin } on { departureDate }, and return on { returnDate }. Please fill out your information below to join the car pool!</p>
   <hr>
-  <div class="radio">
-  <label>
-    <input type="radio" name="canDrive" id="canDrive" value=true checked>
-    I can drive.
-  </label>
-</div>
-<div class="radio">
-  <label>
-    <input type="radio" name="canDrive" id="isPassenger" value=false checked>
-    I will need a ride.
-  </label>
-</div>
+  	<div class="radio">
+		<label><input type="radio" name="canDrive" id="canDrive" value=true checked>I can drive.</label>
+	</div>
+	<div class="radio">
+	  	<label><input type="radio" name="canDrive" id="isPassenger" value=false checked>I will need a ride.</label>
+	</div>
 
+	<div id="canDriveInfo">
+		<div class="form-group">
+	    	<label for="totalSeats">Total Seats</label>
+	    	<input type="number" class="form-control" id="totalSeats" placeholder="Enter total seats">
+  		</div>
+		<div class="form-group">
+	    	<label for="seatsAvailable">Seats Available</label>
+	    	<input type="number" class="form-control" id="seatsAvailable" placeholder="Enter seats available">
+  		</div>
+  		<div class="form-group">
+	    	<label for="gasMileage">Gas Mileage</label>
+	    	<input type="number" class="form-control" id="gasMileage" placeholder="Enter gas mileage">
+  		</div>
+	</div>
 
-  {% if not signedIn %}
-  <div class="form-group">
-    <label for="nameInput">Name</label>
-    <input type="text" class="form-control" id="nameInput" placeholder="Enter name">
-  </div>
-  <div class="form-group">
-    <label for="emailInput">Email address</label>
-    <input type="email" class="form-control" id="emailInput" placeholder="Enter email">
-  </div>
-  {% endif %}
+  	{% if not signedIn %}
+  	<div class="form-group">
+    	<label for="nameInput">Name</label>
+    	<input type="text" class="form-control" id="nameInput" placeholder="Enter name">
+  	</div>
+  	<div class="form-group">
+    	<label for="emailInput">Email address</label>
+    	<input type="email" class="form-control" id="emailInput" placeholder="Enter email">
+  	</div>
+  	{% endif %}
 
-  <div class="form-group">
-    <button type="submit" id="createSubmitButton" class="btn btn-default pull-right">Submit</button>
-  </div>
-  <br>
+  	<div class="form-group">
+    	<button type="submit" id="createSubmitButton" class="btn btn-default pull-right">Submit</button>
+  	</div>
+  	<br>
 </div>
 <br><br>
 
@@ -47,6 +55,20 @@
 
 {% block foot %}
 
-<!-- Insert page-specific JavaScript here -->
+<script type="text/javascript">
+	$(function() {
+		$('#canDriveInfo').hide();
+		$('input[name="canDrive"]').on('change', function() {
+			if ($('#canDrive').is(':checked'))
+				$('#canDriveInfo').show();
+			else {
+				$('#canDriveInfo').hide();
+				$('#totalSeats').val('');
+				$('#seatsAvailable').val('');
+				$('#gasMileage').val('');
+			}
+		});
+	});
+</script>
 
 {% endblock %}
