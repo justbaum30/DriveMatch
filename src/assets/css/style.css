@@ -144,7 +144,14 @@ body {
 
 .instructions h2 {
 	color:orange;
-	text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+	text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+}
+
+.instructions h1 {
+/*	font-family:'georgia';
+*/
+	color:rgb(70,70,70);
+
 }
 
 

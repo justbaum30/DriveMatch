@@ -1,6 +1,8 @@
 from google.appengine.ext import ndb
 from google.appengine.api import users
 from datetime import datetime
+import logging
+import operator
 
 class Account(ndb.Model):
     user = ndb.UserProperty()
@@ -71,8 +73,9 @@ class Event(ndb.Model):
         suffix = []
         suffix.append("?eventName="+eventName)
         suffix.append("hostName="+hostName)
+        # suffix.append("date="+departureTime)
         return "&".join(suffix) 
-   
+
     @classmethod
     def query_events_with_event_name(cls, queryHostName, queryEventName):
         return Event.query(ndb.AND(Event.host.nickname == queryHostName,
@@ -98,8 +101,46 @@ class Event(ndb.Model):
         return Event.query(ndb.AND(Event.guests.account == queryAccount,
                                    Event.departureTime < datetime.now())).order(-Event.departureTime)
 
-    def query_best_drivers_first_for_event(cls, queryEvent):
-        return Guest.query(queryEvent.guests.canDrive == True).order(-availableSeats)        
+    def build_carpools_for_event(event):
+        allguests = event.guests
 
-    def query_nondrivers_for_event(cls, queryEvent):
-        return Guest.query(queryEvent.guests.canDrive == False)
+        carpools = []
+        drivers = []
+        nondrivers = []
+        guestsToBePutInCars = []
+
+        for guest in allguests:
+            guestsToBePutInCars.append(guest)
+            if guest.canDrive:
+                drivers.append(guest)
+            else:
+                nondrivers.append(guest)
+
+        while(guestsToBePutInCars):
+            if guestsToBePutInCars:
+                if not drivers:
+                    break #not enough drivers
+
+            driver = drivers[0]
+            drivers.remove(driver)
+            guestsToBePutInCars.remove(driver)
+            seatsLeft = driver.availableSeats
+            
+            carpool = Carpool(name = driver.nickname, driver = driver, passengers = [])
+            carpools.append(carpool)
+
+            for i in range (0, seatsLeft):
+                if nondrivers:
+                    passenger = nondrivers[0]
+                    nondrivers.remove(passenger)
+                elif drivers:
+                    passenger = drivers[0]
+                    drivers.remove(passenger)
+                else:
+                    break
+
+                guestsToBePutInCars.remove(passenger)
+                carpool.passengers.append(passenger)
+                logging.critical("Added "+passenger.nickname+" to the carpool of "+driver.nickname)
+
+        return carpools

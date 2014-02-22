@@ -31,3 +31,9 @@ indexes:
   - name: host.account.user
   - name: departureTime
     direction: desc
+
+- kind: Guest
+  properties:
+  - name: guests.canDrive
+  - name: availableSeats
+    direction: desc
