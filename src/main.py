@@ -281,7 +281,8 @@ class Signup(CommonHandler):
 
     def post(self):
         self.setupUser();
-
+        logging.critical(self.request.get('totalSeats'))
+        logging.critical(self.request.get('availableSeats'))
         account = totalSeats = availableSeats = milesPerGallon = None
         canDrive = self.request.get('canDrive') != ''
         if canDrive == True:
@@ -305,12 +306,15 @@ class Signup(CommonHandler):
                             availableSeats = availableSeats,
                             milesPerGallon = milesPerGallon)
         guest.put()
-
+        logging.critical(guest)
         hostName = self.request.get('hostName')
         eventName = self.request.get('eventName')
+        logging.critical('here')
         event = model.Event.query_events_with_event_name(hostName, eventName).get()
-        event.guests.append(guest)
+        logging.critical('there')
+        #event.guests.append(guest)
         event.put()
+        logging.critical('over there')
 
 app = webapp2.WSGIApplication([
     ('/', Index),
