@@ -9,20 +9,21 @@
 <div class="row">
 
 <div class="sidebar col-sm-4" id="sidebar-affix" data-spy="affix">
-<h2>Welcome,<br>{ User Name }</h2>
-Change some shit.
+<h2>Welcome,<br>{{ UserName }}</h2>
 </div>
 
 <div class="event-wrap col-sm-8 col-sm-offset-4">
 <h2>Upcoming Events</h2>
 
+{% for event in GuestEvents %}
 <div class="media well">
   <a class="pull-left" href="#">
     <img class="media-object event-icon" src="assets/images/car.png" alt="eventType">
   </a>
   <div class="media-body">
-    <h4 class="media-heading">{ Event Title }</h4>
-    You participated in a ride share to <b>{ Event Location }</b> on <b>{ Event Date }</b>.
+    <h4 class="media-heading">{{ event.name }}</h4>
+    You participated in a ride share to <b>{{ event.eventLocation }}</b>,
+     on <b>{{ event.eventTime }}</b>.
     <br><br>
     <div class="btn-group">
   		<button type="button" class="btn btn-default">Change My Info</button>
@@ -31,14 +32,17 @@ Change some shit.
 	<button type="button" class="btn btn-default pull-right event-details-btn">View Details</button>
   </div>
 </div>
+{% endfor %}
 
+{% for event in HostedEvents %}
 <div class="media well">
   <a class="pull-left" href="#">
     <img class="media-object event-icon" src="assets/images/create.png" alt="eventType">
   </a>
   <div class="media-body">
-    <h4 class="media-heading">{ Event Title }</h4>
-    You created a ride share to <b>{ Event Location }</b> on <b>{ Event Date }</b>.
+    <h4 class="media-heading">{{ event.name }}</h4>
+    You created a ride share to <b>{{ event.eventLocation }}</b>,
+     on <b>{{ event.eventTime }}</b>.
     <br><br>
     <div class="btn-group">
   		<button type="button" class="btn btn-default">Edit Event</button>
@@ -47,9 +51,11 @@ Change some shit.
 	<button type="button" class="btn btn-default pull-right event-details-btn">View Details</button>
   </div>
 </div>
+{% endfor %}
 
 <hr>
 
+<!--
 <h2>Past Events</h2>
 
 <div class="media well">
@@ -84,7 +90,7 @@ Change some shit.
   </div>
 </div>
 </div>
-
+-->
 </div> <!-- /row -->
 
 {% endblock %}

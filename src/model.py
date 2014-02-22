@@ -8,6 +8,13 @@ class Account(ndb.Model):
     def query_account_for_user(cls, queryUser):
         return Account.query(Account.user == queryUser)
 
+class EventLocation(ndb.Model):
+    streetAddress = ndb.StringProperty()
+    city = ndb.StringProperty()
+    state = ndb.StringProperty()
+    latitude = ndb.FloatProperty()
+    longitude = ndb.FloatProperty()
+
 class Guest(ndb.Model):
     account = ndb.StructuredProperty(Account)
     email = ndb.StringProperty()
@@ -28,9 +35,9 @@ class Carpool(ndb.Model):
     passengers = ndb.StructuredProperty(Guest, repeated = True)
     
     departureTime = ndb.DateTimeProperty()
-    departureLocation = ndb.StringProperty()
+    departureLocation = ndb.StructuredProperty(EventLocation) 
     returnTime = ndb.DateTimeProperty()
-    returnLocation = ndb.StringProperty()
+    returnLocation = ndb.StructuredProperty(EventLocation)
 
     @classmethod
     def query_carpools_for_guest(cls, queryGuest):
@@ -46,20 +53,22 @@ class Carpool(ndb.Model):
 
 class Event(ndb.Model):
     name = ndb.StringProperty()
-    eventLocation = ndb.GeoPtProperty()
+
+    eventLocation = ndb.StructuredProperty(EventLocation)
+    eventTime = ndb.DateTimeProperty()
 
     departureTime = ndb.DateTimeProperty()
     returnTime = ndb.DateTimeProperty()
-    departureLocation = ndb.StringProperty()
+    departureLocation = ndb.StructuredProperty(EventLocation)
 
     host = ndb.StructuredProperty(Guest)
     guests = ndb.StructuredProperty(Guest, repeated = True)
     carpools = ndb.LocalStructuredProperty(Carpool, repeated = True)
     
     @classmethod
-    def query_events_with_host(cls, queryHost):
-        return Event.query(Event.host == queryHost)
+    def query_events_with_host(cls, queryAccount):
+        return Event.query(Event.host.account == queryAccount)
 
     @classmethod
-    def query_events_with_account(cls, queryAccount):
+    def query_events_with_guest(cls, queryAccount):
         return Event.query(Event.guests.account == queryAccount)

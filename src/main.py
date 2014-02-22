@@ -79,8 +79,6 @@ class CreateEvent(CommonHandler):
         
         host = model.Guest(account = self.account, nickname = self.user.nickname(), email = self.user.email())
         newEvent = model.Event(name = self.request.get('eventName'),
-                            eventLocation = ndb.GeoPt(self.request.get('eventLocation')),
-                            departureLocation = self.request.get('departureLocation'),
                             departureTime = departureDateTime,
                             returnTime = returnDateTime,
                             host = host,
@@ -92,6 +90,11 @@ class Account(CommonHandler):
 
     def get(self):
         self.setupUser();
+        self.templateValues['UserName'] = self.user.nickname()
+
+        self.templateValues['HostedEvents'] = model.Event.query_events_with_host(self.account)
+        self.templateValues['GuestEvents'] = model.Event.query_events_with_guest(self.account)
+
         self.render('account.html')
 
 class Events(CommonHandler):
