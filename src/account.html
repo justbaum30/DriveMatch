@@ -30,7 +30,7 @@
     You are participating in a ride share to <b>{{ event.eventLocation.streetAddress }}</b>,
      departing on <b>{{ event.departureTime }}</b> and returning on <b>{{ event.returnTime }}</b>.
     <br><br>
-    <h5>Status: </h5>I do not currently have a ride.
+    
     <div class="btn-group">
   		<button type="button" class="btn btn-default view-carpool-button">View Car Pool</button>
       <button type="button" class="btn btn-default change-info-button">Edit My Info</button>
@@ -39,7 +39,7 @@
   <a class="btn btn-info pull-right invitationButton" href="/signup{{ event.urlsuffix }}">Send Invitations</a>
 	<button type="button" class="btn btn-default pull-right event-details-btn">View Details</button>
 
-  <div class="change-info-pane">
+  <div class="change-info-pane hidden">
     <div class="radio">
     <label><input type="radio" name="canDrive" id="canDrive" value=true checked>I can drive.</label>
   </div>
@@ -113,6 +113,17 @@
       <input type="text" class="datetimepicker form-control input-eventReturnTime" value="{{ event.returnTime }}">
     </div>
     </div>
+  </div>
+
+  <div class="event-pane hidden">
+    {% for event in FutureHostedEvents %}
+    <ul>
+      <li><h4>{{ driver }}</h4></li>
+      {% for event in FutureHostedEvents %}
+        <li>{{ passenger }}</li>
+      {% end if %}
+    <ul>
+    {% end if %}
   </div>
 
   <div class="form-group">
