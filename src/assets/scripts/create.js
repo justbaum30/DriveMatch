@@ -23,7 +23,9 @@ $(function() {
 				guests: JSON.stringify(selectedPeople)
 			},
 			success: function(data) { 
-				window.location = '/signup'+data;
+				setTimeout(function() {
+					window.location = '/signup'+data;
+				}, 1000);
 			},
 			error: function(jqXHR, textStatus, errorThrown) { 
 				console.error('Failure!'); 
