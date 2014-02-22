@@ -10,6 +10,7 @@ class Account(ndb.Model):
 
 class Guest(ndb.Model):
     account = ndb.StructuredProperty(Account)
+    email = ndb.StringProperty()
     nickname = ndb.StringProperty()
     canDrive = ndb.BooleanProperty()
     isDriving = ndb.BooleanProperty()
