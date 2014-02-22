@@ -26,8 +26,11 @@
 	.nav li a {text-align: center;}
 }
 
-@media (max-width: 380px) {
-	
+@media (min-width: 768px) {
+	#sidebar-affix {
+		position:fixed;
+		top:70px;
+	}
 }
 
 /* DOM styling */
@@ -50,7 +53,7 @@ button, label {
 */}
 
 .navbar-default {
-	background-color: rgba(255,200,100,0.8);
+	background-color: rgb(248,201,104);
 	border: none;
 	border-radius: 0;
 	color:white;
@@ -58,6 +61,10 @@ button, label {
 	position:fixed;
 	z-index:100;
 	width:100%;
+	border-bottom:1px solid orange;
+	-webkit-box-shadow: 0 0 7px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 0 7px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 7px rgba(0, 0, 0, 0.3);
 }
 
 .nav li a {
@@ -86,7 +93,7 @@ button, label {
 
 body {
 	background-color: rgb(252,252,252);
-	padding:30px 0 20px 0;
+	padding:70px 0 20px 0;
 }
 
 .jumbotron {
