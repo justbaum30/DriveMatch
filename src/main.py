@@ -124,11 +124,24 @@ class Signup(CommonHandler):
 
     def get(self):
         self.setupUser()
+        eventName = self.request.get('eventName')
+        hostName = self.request.get('hostName')
+
+        event = model.Event.query_events_with_event_name(hostName, eventName).get()
+
+        self.templateValues['HostName'] = event.host.nickname
+        self.templateValues['EventName'] = event.name
+        self.templateValues['Destination'] = event.eventLocation.streetAddress
+        self.templateValues['Origin'] = event.departureLocation.streetAddress
+        self.templateValues['DepartureDate'] = event.departureTime
+        self.templateValues['ReturnDate'] = event.returnTime
+
+        logging.critical(eventName)
+        logging.critical(hostName)
         self.render('signup.html')
 
     def post(self):
         self.setupUser();
-
         departureDateTime = datetime.datetime.strptime(self.request.get('departureDateTime'), dateTimeFormat)
 
         guest = model.Guest()

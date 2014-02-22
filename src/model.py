@@ -65,7 +65,18 @@ class Event(ndb.Model):
     host = ndb.StructuredProperty(Guest)
     guests = ndb.StructuredProperty(Guest, repeated = True)
     carpools = ndb.LocalStructuredProperty(Carpool, repeated = True)
-    
+
+    def generate_url_suffix(anEvent):
+        suffix = []
+        suffix.append("?eventName="+anEvent.name)
+        suffix.append("hostName="+anEvent.host.nickname)
+        return "&".join(suffix) 
+   
+    @classmethod
+    def query_events_with_event_name(cls, queryHostName, queryEventName):
+        return Event.query(ndb.AND(Event.host.nickname == queryHostName,
+                                   Event.name == queryEventName))
+
     @classmethod
     def query_future_events_with_host(cls, queryAccount):
         return Event.query(ndb.AND(Event.host.account == queryAccount,
@@ -85,3 +96,9 @@ class Event(ndb.Model):
     def query_past_events_with_guest(cls, queryAccount):
         return Event.query(ndb.AND(Event.guests.account == queryAccount,
                                    Event.departureTime < datetime.now())).order(-Event.departureTime)
+
+    def query_best_drivers_first_for_event(cls, queryEvent):
+        return Guest.query(queryEvent.guests.canDrive == True).order(-availableSeats)        
+
+    def query_nondrivers_for_event(cls, queryEvent):
+        return Guest.query(queryEvent.guests.canDrive == False)
