@@ -116,10 +116,10 @@
   </div>
 
   <div class="event-pane hidden">
-    {% for event in FutureHostedEvents %}
+    {% for carpool in carpools %}
     <ul>
-      <li><h4>{{ driver }}</h4></li>
-      {% for event in FutureHostedEvents %}
+      <li><h4>{{ carpool.driver }}</h4></li>
+      {% for passenger in carpool.passengers %}
         <li>{{ passenger }}</li>
       {% end if %}
     <ul>
