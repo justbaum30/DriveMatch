@@ -24,12 +24,21 @@
 
 @media (max-width: 768px) {
 	.nav li a {text-align: center;}
+	.affix {
+        position: static;
+    }
 }
 
-@media (min-width: 768px) {
-	#sidebar-affix {
+@media (min-width: 200px) {
+	/*#sidebar-affix {
 		position:fixed;
 		top:70px;
+	}*/
+}
+
+@media (max-width: 600px) {
+	.event-details-btn {
+		display:none;
 	}
 }
 

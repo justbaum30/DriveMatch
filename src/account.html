@@ -8,13 +8,13 @@
 
 <div class="row">
 
-<div class="sidebar col-lg-3" id="sidebar-affix">
+<div class="sidebar col-sm-4" id="sidebar-affix" data-spy="affix">
 <h2>Welcome,<br>{ User Name }</h2>
 Change some shit.
 </div>
 
-<div class="event-wrap col-lg-8 col-lg-offset-4">
-<h1>My Events</h1>
+<div class="event-wrap col-sm-8 col-sm-offset-4">
+<h2>Upcoming Events</h2>
 
 <div class="media well">
   <a class="pull-left" href="#">
@@ -28,7 +28,7 @@ Change some shit.
   		<button type="button" class="btn btn-default">Change My Info</button>
   		<button type="button" class="btn btn-default">Leave Event</button>
 	</div>
-	<button type="button" class="btn btn-default pull-right">View Details</button>
+	<button type="button" class="btn btn-default pull-right event-details-btn">View Details</button>
   </div>
 </div>
 
@@ -44,7 +44,27 @@ Change some shit.
   		<button type="button" class="btn btn-default">Edit Event</button>
   		<button type="button" class="btn btn-default">Cancel Event</button>
 	</div>
-	<button type="button" class="btn btn-default pull-right">View Details</button>
+	<button type="button" class="btn btn-default pull-right event-details-btn">View Details</button>
+  </div>
+</div>
+
+<hr>
+
+<h2>Past Events</h2>
+
+<div class="media well">
+  <a class="pull-left" href="#">
+    <img class="media-object event-icon" src="assets/images/create.png" alt="eventType">
+  </a>
+  <div class="media-body">
+    <h4 class="media-heading">{ Event Title }</h4>
+    You created a ride share to <b>{ Event Location }</b> on <b>{ Event Date }</b>.
+    <br><br>
+    <div class="btn-group">
+  		<button type="button" class="btn btn-default">Edit Event</button>
+  		<button type="button" class="btn btn-default">Cancel Event</button>
+	</div>
+	<button type="button" class="btn btn-default pull-right event-details-btn">View Details</button>
   </div>
 </div>
 
@@ -60,23 +80,7 @@ Change some shit.
   		<button type="button" class="btn btn-default">Edit Event</button>
   		<button type="button" class="btn btn-default">Cancel Event</button>
 	</div>
-	<button type="button" class="btn btn-default pull-right">View Details</button>
-  </div>
-</div>
-
-<div class="media well">
-  <a class="pull-left" href="#">
-    <img class="media-object event-icon" src="assets/images/create.png" alt="eventType">
-  </a>
-  <div class="media-body">
-    <h4 class="media-heading">{ Event Title }</h4>
-    You created a ride share to <b>{ Event Location }</b> on <b>{ Event Date }</b>.
-    <br><br>
-    <div class="btn-group">
-  		<button type="button" class="btn btn-default">Edit Event</button>
-  		<button type="button" class="btn btn-default">Cancel Event</button>
-	</div>
-	<button type="button" class="btn btn-default pull-right">View Details</button>
+	<button type="button" class="btn btn-default pull-right event-details-btn">View Details</button>
   </div>
 </div>
 </div>
