@@ -16,7 +16,7 @@
 <h2>Upcoming Events</h2>
 
 {% if not HasEvents %}
-    <h3>No upcoming events. <a href="./create">Create a new event?</a></h3>
+    <h3>No upcoming events. <a href="/create">Create a new event?</a></h3>
 {% endif %}
 
 {% for event in FutureGuestEvents %}
@@ -34,6 +34,32 @@
   		<button type="button" class="btn btn-default leave-event-button">Leave Event</button>
 	</div>
 	<button type="button" class="btn btn-default pull-right event-details-btn">View Details</button>
+
+  <div class="change-info-pane">
+    <div class="radio">
+    <label><input type="radio" name="canDrive" id="canDrive" value=true checked>I can drive.</label>
+  </div>
+  <div class="radio">
+      <label><input type="radio" name="canDrive" id="isPassenger" value=false checked>I will need a ride.</label>
+  </div>
+
+  <div id="canDriveInfo">
+    <div class="form-group">
+        <label for="totalSeats">Total Seats</label>
+        <input type="number" class="form-control" id="totalSeats" placeholder="Enter total seats">
+      </div>
+    <div class="form-group">
+        <label for="seatsAvailable">Seats Available</label>
+        <input type="number" class="form-control" id="seatsAvailable" placeholder="Enter seats available">
+      </div>
+      <div class="form-group">
+        <label for="gasMileage">Gas Mileage</label>
+        <input type="number" class="form-control" id="gasMileage" placeholder="Enter gas mileage">
+      </div>
+  </div>
+  </div><!-- /change-info-pane -->
+
+
   </div>
 
 </div>
@@ -55,6 +81,7 @@
 	</div>
 	<button type="button" class="btn btn-default pull-right event-details-btn">View Details</button>
   </div>
+
   <div class="edit-pane hidden">
     <h4>Edit event details:</h4>
     <div role="form">
