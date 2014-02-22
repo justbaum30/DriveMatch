@@ -25,7 +25,7 @@
     <img class="media-object event-icon" src="assets/images/car.png" alt="eventType">
   </a>
   <div class="media-body">
-    <h4 class="media-heading">{{ event.name }}</h4>
+    <h4 class="media-heading">{{ event.name.title() }}</h4>
     You are a participant in a ride share to <b>{{ event.eventLocation.streetAddress }}</b>,
      departing on <b>{{ event.departureTime }}</b> and returning on <b>{{ event.returnTime }}</b>.
     <br><br>
@@ -71,7 +71,7 @@
     <img class="media-object event-icon" src="assets/images/create.png" alt="eventType">
   </a>
   <div class="media-body">
-    <h4 class="media-heading">{{ event.name }}</h4>
+    <h4 class="media-heading">{{ event.name.title() }}</h4>
     You are the coordinator for a ride share to <b>{{ event.eventLocation.streetAddress }}</b>,
      departing on <b>{{ event.departureTime }}</b> and returning on <b>{{ event.returnTime }}</b>.
     <br><br>
@@ -87,7 +87,7 @@
     <div role="form">
   <div class="form-group">
     <label for="eventName">Event Title</label>
-    <input type="text" class="form-control input-eventName" value="{{ event.name }}">
+    <input type="text" class="form-control input-eventName" value="{{ event.name.title() }}">
   </div>
   <div class="form-group">
     <label for="departureLocation">Where are you leaving from?</label>
@@ -127,7 +127,7 @@
     <img class="media-object event-icon" src="assets/images/car.png" alt="eventType">
   </a>
   <div class="media-body">
-    <h4 class="media-heading">{{ event.name }}</h4>
+    <h4 class="media-heading">{{ event.name.title() }}</h4>
     You are a participant in a ride share to <b>{{ event.eventLocation.streetAddress }}</b>,
      departing on <b>{{ event.departureTime }}</b> and returning on <b>{{ event.returnTime }}</b>.
     <br><br>
@@ -147,7 +147,7 @@
     <img class="media-object event-icon" src="assets/images/create.png" alt="eventType">
   </a>
   <div class="media-body">
-    <h4 class="media-heading">{{ event.name }}</h4>
+    <h4 class="media-heading">{{ event.name.title() }}</h4>
     You are the coordinator for a ride share to <b>{{ event.eventLocation.streetAddress }}</b>,
      departing on <b>{{ event.departureTime }}</b> and returning on <b>{{ event.returnTime }}</b>.
     <br><br>
@@ -162,7 +162,7 @@
     <div role="form">
   <div class="form-group">
     <label for="eventName">Event Title</label>
-    <input type="text" class="form-control input-eventName" value="{{ event.name }}">
+    <input type="text" class="form-control input-eventName" value="{{ event.name.title() }}">
   </div>
   <div class="form-group">
     <label for="departureLocation">Where are you leaving from?</label>
