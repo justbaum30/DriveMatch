@@ -26,7 +26,7 @@
   </a>
   <div class="media-body">
     <h4 class="media-heading">{{ event.name }}</h4>
-    You are a participant in a ride share to <b>{{ event.eventLocation }}</b>,
+    You are a participant in a ride share to <b>{{ event.eventLocation.streetAddress }}</b>,
      departing on <b>{{ event.departureTime }}</b> and returning on <b>{{ event.returnTime }}</b>.
     <br><br>
     <div class="btn-group">
@@ -45,7 +45,7 @@
   </a>
   <div class="media-body">
     <h4 class="media-heading">{{ event.name }}</h4>
-    You are the coordinator for a ride share to <b>{{ event.eventLocation }}</b>,
+    You are the coordinator for a ride share to <b>{{ event.eventLocation.streetAddress }}</b>,
      departing on <b>{{ event.departureTime }}</b> and returning on <b>{{ event.returnTime }}</b>.
     <br><br>
     <div class="btn-group">

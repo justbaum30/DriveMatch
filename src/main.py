@@ -76,11 +76,16 @@ class CreateEvent(CommonHandler):
         dateTimeFormat = "%B %d %Y %H:%M %p"
         departureDateTime = datetime.datetime.strptime(self.request.get('departureDateTime'), dateTimeFormat)
         returnDateTime = datetime.datetime.strptime(self.request.get('returnDateTime'), dateTimeFormat)
+
+        departureLocation = model.EventLocation(streetAddress = self.request.get('departureLocation'))
+        eventLocation = model.EventLocation(streetAddress = self.request.get('eventLocation'))
         
         host = model.Guest(account = self.account, nickname = self.user.nickname(), email = self.user.email())
         newEvent = model.Event(name = self.request.get('eventName'),
                             departureTime = departureDateTime,
                             returnTime = returnDateTime,
+                            eventLocation = eventLocation,
+                            departureLocation = departureLocation,
                             host = host,
                             guests = [],
                             carpools = [])
