@@ -10,12 +10,13 @@
 
 <div class="sidebar col-sm-4" id="sidebar-affix" data-spy="affix">
 <h2>Welcome,<br>{{ UserName }}</h2>
+<a class="btn btn-default" href="/create">Create New Event</a>
 </div>
 
 <div class="event-wrap col-sm-8 col-sm-offset-4">
 <h2>Upcoming Events</h2>
 
-{% if not HasEvents %}
+{% if not HasFutureEvents %}
     <h3>No upcoming events. <a href="/create">Create a new event?</a></h3>
 {% endif %}
 
@@ -134,10 +135,7 @@
     You are participating in a ride share to <b>{{ event.eventLocation.streetAddress }}</b>,
      departing on <b>{{ event.departureTime }}</b> and returning on <b>{{ event.returnTime }}</b>.
     <br><br>
-    <div class="btn-group">
-  		<button type="button" class="btn btn-default change-info-button">Edit My Info</button>
-  		<button type="button" class="btn btn-default leave-event-button">Leave Event</button>
-	</div>
+  		<button type="button" class="btn btn-default remove-event-button">Remove Event</button>
 	<button type="button" class="btn btn-default pull-right event-details-btn">View Details</button>
   </div>
 
@@ -154,10 +152,7 @@
     You are the coordinator for a ride share to <b>{{ event.eventLocation.streetAddress }}</b>,
      departing on <b>{{ event.departureTime }}</b> and returning on <b>{{ event.returnTime }}</b>.
     <br><br>
-    <div class="btn-group">
-  		<button type="button" class="btn btn-default edit-event-button">Edit Event</button>
-  		<button type="button" class="btn btn-default cancel-event-button">Cancel Event</button>
-	</div>
+  		<button type="button" class="btn btn-default delete-event-button">Delete Event</button>
 	<button type="button" class="btn btn-default pull-right event-details-btn">View Details</button>
   </div>
   <div class="edit-pane hidden">
