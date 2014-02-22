@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Facebook Example</title>
+  </head>
+  <script src = "assets/scripts/jquery-1.11.0.min.js"></script>
+  <script>
+	window.fbAsyncInit = function() {
+		FB.init({appId: '{{ facebook_app_id }}', status: true, cookie: true,
+			 xfbml: true});
+		FB.Event.subscribe('{% if current_user %}auth.logout{% else %}auth.login{% endif %}', function(response) {
+			{% if current_user %} window.location = "/logout" {% else %} window.location.reload(); {% endif %}
+		});
+	};
+	function events()
+	{
+		var arrayOfIds = [];
+		FB.api('/me/events?access_token={{ current_user.access_token }}', function(response) {
+			for(var i = 0; i < response.data.length; i++)
+			{
+				arrayOfIds.push(response.data[i].id);
+			}
+			FB.ui({
+					method: 'send',
+					to: arrayOfIds[0],
+					link: 'www.iamawesome.com'
+			});
+		});
+		
+		//generates list of names of friends
+		//FB.api('/{{ current_user.id }}/friends?access_token={{ current_user.access_token }}', function(response) {
+		//	var arrayOfNames = [];
+		//	var arrayOfEmails = [];
+		//	var arrayOfIds = [];
+		//	for(var i = 0; i < response.data.length; i++)
+		//	{
+		//		arrayOfNames.push(response.data[i].name);
+		//		arrayOfIds.push(response.data[i].id);
+		//	}
+		//	for(var i = 0; i < 1; i++)
+		//	{
+		//		FB.ui({
+		//			method: 'send',
+		//			to: ,
+		//			link: 'www.iamawesome.com'
+		//		});
+		//	}
+		//});
+	}
+  </script>
+  <body>
+    <fb:login-button autologoutlink="true" scope="publish_stream, user_events"></fb:login-button>
+
+    {% if current_user %}
+      <p><a href="{{ current_user.profile_url }}"><img src="http://graph.facebook.com/{{ current_user.id }}/picture?type=square"/></a></p>
+      <p>Hello, {{ current_user.name|escape }}</p>
+	  
+	  <button onclick=events()>Click!</button>
+    {% endif %}
+
+    <div id="fb-root"></div>
+    
+    {% if current_user %}
+	    <div>
+	    Upload photo test: 
+		   <form method="post">
+		   Enter URL to URLFetch from:<input type="text" name="url"/>
+		   <input type="submit"/>
+		   </form>
+	    </div>
+    {% endif %}
+    <script>
+	  //console.log("Hello");
+	  (function() {
+        var e = document.createElement('script');
+        e.type = 'text/javascript';
+        e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
+        e.async = true;
+        document.getElementById('fb-root').appendChild(e);
+      }());
+      
+    </script>
+  </body>
+</html>
