@@ -13,13 +13,14 @@ $(function() {
 		$.ajax({
 			url: '/create',
 			type: 'POST',
+			dataType: 'json',
 			data: {
 				eventName: $('#eventName').val(),
 				eventLocation: $('#eventLocation').val(),
 				departureLocation: $('#departureLocation').val(),
 				departureDateTime: $('#eventDepartureTime').val(),
 				returnDateTime: $('#eventReturnTime').val(),
-				guests: selectedPeople
+				guests: JSON.stringify(selectedPeople)
 			},
 			success: function() { 
 				console.log("success!"); 

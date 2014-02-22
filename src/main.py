@@ -18,6 +18,7 @@ import os
 import urllib
 
 from google.appengine.api import users
+from google.appengine.api import mail
 
 import webapp2
 import jinja2
@@ -25,6 +26,7 @@ import logging
 import cgi
 import model
 import datetime
+import json
 
 from google.appengine.ext import ndb
 
@@ -73,13 +75,18 @@ class CreateEvent(CommonHandler):
     def post(self):
         self.setupUser();
 
+        test = json.loads(self.request.get('guests'))
+        logging.critical(test)
+        logging.critical(test[0]['personName'])
+
         dateTimeFormat = "%B %d %Y %H:%M %p"
         departureDateTime = datetime.datetime.strptime(self.request.get('departureDateTime'), dateTimeFormat)
         returnDateTime = datetime.datetime.strptime(self.request.get('returnDateTime'), dateTimeFormat)
 
         departureLocation = model.EventLocation(streetAddress = self.request.get('departureLocation'))
         eventLocation = model.EventLocation(streetAddress = self.request.get('eventLocation'))
-        
+
+
         host = model.Guest(account = self.account, nickname = self.user.nickname(), email = self.user.email())
         newEvent = model.Event(name = self.request.get('eventName'),
                             departureTime = departureDateTime,
