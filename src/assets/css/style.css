@@ -50,8 +50,23 @@ button, label {
 }
 
 .navbar-default {
-/*	background-color: #428bca;*/
+	background-color: orange;
 	border: none;
 	border-radius: 0;
 	color:white;
+	top:0;
+	position:fixed;
+	z-index:100;
+	width:100%;
+}
+
+.footerNav {
+	color:white;
+	padding:3px 0px;
+	min-height:0px;
+	background-color:gray;
+}
+.footerNav a {
+	color:white;
+	margin-right:0;
 }
