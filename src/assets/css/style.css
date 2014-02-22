@@ -117,3 +117,29 @@ body {
 .datetimepicker {
 	min-width: 200px;
 }
+
+.headNum {
+	font-size: 100px;
+	font-family: "lobster";
+}
+
+.headText {
+	line-height: 100px;
+	font-size: 50px;
+	vertical-align: top;
+	font-family: "bebas";
+}
+
+.instructions {
+	font-size:20px;
+}
+
+.instructions h2 {
+	color:orange;
+	text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+}
+
+
+
+
+
