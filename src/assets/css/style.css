@@ -23,7 +23,7 @@
 /* Media Queries */
 
 @media (max-width: 768px) {
-	
+	.nav li a {text-align: center;}
 }
 
 @media (max-width: 380px) {
@@ -60,6 +60,14 @@ button, label {
 	width:100%;*/
 }
 
+.nav li a {
+	padding-top:6px;
+	padding-bottom:6px;
+	margin:10px;
+}
+
+/* Footer Nav */
+
 .footerNav {
 	color:white;
 	padding:3px 0px;
@@ -72,6 +80,12 @@ button, label {
 
 .footerContainer {
 	margin:0 10px;
+}
+
+/* DOM Styling */
+
+body {
+	background-color: rgb(252,252,252);
 }
 
 .jumbotron {
