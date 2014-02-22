@@ -24,6 +24,7 @@ import jinja2
 import logging
 import cgi
 import model
+import datetime
 
 from google.appengine.ext import ndb
 
@@ -40,13 +41,13 @@ class CommonHandler(webapp2.RequestHandler):
             self.templateValues['signedIn'] = True
             self.templateValues['loginUrl'] = users.create_logout_url('/')
            
-            account = model.Account.query_account_for_user(self.user).get()
-            if account:
-                logging.critical('account exists for email ' + account.user.email())
+            self.account = model.Account.query_account_for_user(self.user).get()
+            if self.account:
+                logging.critical('account exists for email ' + self.account.user.email())
             else:
                 logging.critical('account doesnt exist - creating')
-                account = model.Account(user = self.user)
-                account.put()
+                self.account = model.Account(user = self.user)
+                self.account.put()
         else:
             self.templateValues['loginUrl'] = users.create_login_url('/account')
 
@@ -65,10 +66,27 @@ class Index(CommonHandler):
         self.render('index.html')
 
 class CreateEvent(CommonHandler):
-
     def get(self):
         self.setupUser();
         self.render('create.html')
+
+    def post(self):
+        self.setupUser();
+
+        dateTimeFormat = "%B %d %Y %H:%M %p"
+        departureDateTime = datetime.datetime.strptime(self.request.get('departureDateTime'), dateTimeFormat)
+        returnDateTime = datetime.datetime.strptime(self.request.get('returnDateTime'), dateTimeFormat)
+        
+        host = model.Guest(account = self.account, nickname = self.user.nickname(), email = self.user.email())
+        newEvent = model.Event(name = self.request.get('eventName'),
+                            eventLocation = ndb.GeoPt(self.request.get('eventLocation')),
+                            departureLocation = self.request.get('departureLocation'),
+                            departureTime = departureDateTime,
+                            returnTime = returnDateTime,
+                            host = host,
+                            guests = [],
+                            carpools = [])
+        newEvent.put()
 
 class Account(CommonHandler):
 

@@ -40,7 +40,7 @@ class Carpool(ndb.Model):
     @classmethod
     def query_carpools_for_driver(cls, queryDriver):
         return Carpool.query(Carpool.driver == queryDriver)
-
+    
     def seats_remaining():
         return (driver.availableSeats - passengers.count)
 
@@ -49,9 +49,8 @@ class Event(ndb.Model):
     eventLocation = ndb.GeoPtProperty()
 
     departureTime = ndb.DateTimeProperty()
-    departureLocation = ndb.StringProperty()
     returnTime = ndb.DateTimeProperty()
-    returnLocation = ndb.StringProperty()
+    departureLocation = ndb.StringProperty()
 
     host = ndb.StructuredProperty(Guest)
     guests = ndb.StructuredProperty(Guest, repeated = True)
@@ -61,5 +60,6 @@ class Event(ndb.Model):
     def query_events_with_host(cls, queryHost):
         return Event.query(Event.host == queryHost)
 
+    @classmethod
     def query_events_with_guest(cls, queryGuest):
         return Event.query(Event.guests.IN([queryGuest]))
