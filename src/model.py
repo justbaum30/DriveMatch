@@ -67,8 +67,8 @@ class Event(ndb.Model):
     
     @classmethod
     def query_events_with_host(cls, queryAccount):
-        return Event.query(Event.host.account == queryAccount)
+        return Event.query(Event.host.account == queryAccount).order(Event.departureTime)
 
     @classmethod
     def query_events_with_guest(cls, queryAccount):
-        return Event.query(Event.guests.account == queryAccount)
+        return Event.query(Event.guests.account == queryAccount).order(Event.departureTime)
