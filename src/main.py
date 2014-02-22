@@ -37,7 +37,7 @@ class CommonHandler(webapp2.RequestHandler):
         self.templateValues = {}
         if self.user:
             self.templateValues['signedIn'] = True
-            self.templateValues['loginUrl'] = users.create_logout_url('/account')
+            self.templateValues['loginUrl'] = users.create_logout_url('/')
         else:
             self.templateValues['loginUrl'] = users.create_login_url('/account')
 
