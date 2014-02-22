@@ -29,3 +29,26 @@ $(function() {
 function updateProgress(newValue){
   $('.progress-bar').css('width', newValue+'%').attr('aria-valuenow', newValue); 
 }
+
+// dummy user data
+var userData = [{"personName":"Jacob","personEmail":"bsabugler@gmail.com"},{"personName":"Jacob","personEmail":"bsabugler@gmail.com"},{"personName":"Jacob","personEmail":"bsabugler@gmail.com"},{"personName":"Jacob","personEmail":"bsabugler@gmail.com"},{"personName":"Jacob","personEmail":"bsabugler@gmail.com"},{"personName":"Jacob","personEmail":"bsabugler@gmail.com"},{"personName":"Jacob","personEmail":"bsabugler@gmail.com"},{"personName":"Jacob","personEmail":"bsabugler@gmail.com"},{"personName":"Jacob","personEmail":"bsabugler@gmail.com"},{"personName":"Jacob","personEmail":"bsabugler@gmail.com"},{"personName":"Jacob","personEmail":"bsabugler@gmail.com"},{"personName":"Jacob","personEmail":"bsabugler@gmail.com"},{"personName":"Jacob","personEmail":"bsabugler@gmail.com"},{"personName":"Jacob","personEmail":"bsabugler@gmail.com"},{"personName":"Jacob","personEmail":"bsabugler@gmail.com"},{"personName":"Jacob","personEmail":"bsabugler@gmail.com"},{"personName":"Jacob","personEmail":"bsabugler@gmail.com"},{"personName":"Jacob","personEmail":"bsabugler@gmail.com"},{"personName":"Jacob","personEmail":"bsabugler@gmail.com"},{"personName":"Jacob","personEmail":"bsabugler@gmail.com"},{"personName":"Jacob","personEmail":"bsabugler@gmail.com"},{"personName":"Jacob","personEmail":"bsabugler@gmail.com"}];
+
+// Generate DataTable
+function initializeTable(data){
+	
+  $('#guestTable').hide();
+  var myColumns = [
+        	{ "mDataProp": "personName" },
+        	{ "mDataProp": "personEmail" },
+    	];
+  var table = $('#dataTable').dataTable({
+      "aaData": data,
+      "aoColumns": [
+          { "mDataProp": "personName" },
+          { "mDataProp": "personEmail" }
+      ]
+  });
+  $('#guestTable').fadeIn('slow');
+}
+
+initializeTable(userData);
