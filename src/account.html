@@ -6,12 +6,96 @@
 
 <!-- Page Content -->
 
-<a href="/events">My Events</a>
+<div class="row">
+
+<div class="sidebar col-lg-4 well" id="sidebar-affix" data-spy="affix" data-offset-top="60" data-offset-bottom="200">
+
+</div>
+
+<div class="event-wrap col-lg-8">
+<h1>My Events</h1>
+
+<div class="media well">
+  <a class="pull-left" href="#">
+    <img class="media-object event-icon" src="assets/images/car.png" alt="eventType">
+  </a>
+  <div class="media-body">
+    <h4 class="media-heading">[Event Title]</h4>
+    You participated in a ride share to <b>[Event Location]</b> on <b>[Event Date]</b>.
+    <br><br>
+    <div class="btn-group">
+  		<button type="button" class="btn btn-default">Change My Info</button>
+  		<button type="button" class="btn btn-default">Leave Event</button>
+	</div>
+	<button type="button" class="btn btn-default pull-right">View Details</button>
+  </div>
+</div>
+
+<div class="media well">
+  <a class="pull-left" href="#">
+    <img class="media-object event-icon" src="assets/images/create.png" alt="eventType">
+  </a>
+  <div class="media-body">
+    <h4 class="media-heading">[Event Title]</h4>
+    You created a ride share to <b>[Event Location]</b> on <b>[Event Date]</b>.
+    <br><br>
+    <div class="btn-group">
+  		<button type="button" class="btn btn-default">Edit Event</button>
+  		<button type="button" class="btn btn-default">Cancel Event</button>
+	</div>
+	<button type="button" class="btn btn-default pull-right">View Details</button>
+  </div>
+</div>
+
+<div class="media well">
+  <a class="pull-left" href="#">
+    <img class="media-object event-icon" src="assets/images/create.png" alt="eventType">
+  </a>
+  <div class="media-body">
+    <h4 class="media-heading">[Event Title]</h4>
+    You created a ride share to <b>[Event Location]</b> on <b>[Event Date]</b>.
+    <br><br>
+    <div class="btn-group">
+  		<button type="button" class="btn btn-default">Edit Event</button>
+  		<button type="button" class="btn btn-default">Cancel Event</button>
+	</div>
+	<button type="button" class="btn btn-default pull-right">View Details</button>
+  </div>
+</div>
+
+<div class="media well">
+  <a class="pull-left" href="#">
+    <img class="media-object event-icon" src="assets/images/create.png" alt="eventType">
+  </a>
+  <div class="media-body">
+    <h4 class="media-heading">[Event Title]</h4>
+    You created a ride share to <b>[Event Location]</b> on <b>[Event Date]</b>.
+    <br><br>
+    <div class="btn-group">
+  		<button type="button" class="btn btn-default">Edit Event</button>
+  		<button type="button" class="btn btn-default">Cancel Event</button>
+	</div>
+	<button type="button" class="btn btn-default pull-right">View Details</button>
+  </div>
+</div>
+</div>
+
+</div> <!-- /row -->
 
 {% endblock %}
 
 {% block foot %}
 
 <!-- Insert page-specific JavaScript here -->
+<script>
+$('#sidebar-affix').affix({
+    offset: {
+      top: 100
+    , bottom: function () {
+        return (this.bottom = $('.footer').outerHeight(true))
+      }
+    }
+  })
+</script>
 
 {% endblock %}

@@ -23,6 +23,7 @@ import webapp2
 import jinja2
 import logging
 import cgi
+import model
 
 from google.appengine.ext import ndb
 
@@ -37,7 +38,15 @@ class CommonHandler(webapp2.RequestHandler):
         self.templateValues = {}
         if self.user:
             self.templateValues['signedIn'] = True
-            self.templateValues['loginUrl'] = users.create_logout_url('/')
+            self.templateValues['loginUrl'] = users.create_logout_url('/account')
+           
+            account = model.Account.query_account_for_user(self.user).get()
+            if account:
+                logging.critical('account exists for email ' + account.user.email())
+            else:
+                logging.critical('account doesnt exist - creating')
+                account = model.Account(user = self.user)
+                account.put()
         else:
             self.templateValues['loginUrl'] = users.create_login_url('/')
 

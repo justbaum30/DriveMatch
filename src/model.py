@@ -1,17 +1,26 @@
 from google.appengine.ext import ndb
+from google.appengine.api import users
 
 class Account(ndb.Model):
     user = ndb.UserProperty()
-    hostedEvents = ndb.StructuredProperty(Event, repeated = True)
-    attendedEvents = ndb.StructuredProperty(Event, repeated = True)
+
+    @classmethod
+    def query_account_for_user(cls, queryUser):
+        return Account.query(Account.user == queryUser)
 
 class Guest(ndb.Model):
     account = ndb.StructuredProperty(Account)
+    email = ndb.StringProperty()
     nickname = ndb.StringProperty()
     canDrive = ndb.BooleanProperty()
     isDriving = ndb.BooleanProperty()
-    seats = ndb.IntegerProperty()
+    availableSeats = ndb.IntegerProperty()
+    totalSeats = ndb.IntegerProperty()
     milesPerGallon = ndb.FloatProperty()
+
+    @classmethod
+    def query_guest_instances_for_account(cls, queryAccount):
+        return Guest.query(Guest.account == queryAccount)
 
 class Carpool(ndb.Model):
     name = ndb.StringProperty()
@@ -19,19 +28,38 @@ class Carpool(ndb.Model):
     passengers = ndb.StructuredProperty(Guest, repeated = True)
     
     departureTime = ndb.DateTimeProperty()
-    departureLocation = nbd.StringProperty()
+    departureLocation = ndb.StringProperty()
     returnTime = ndb.DateTimeProperty()
-    returnLocation = nbd.StringProperty()
+    returnLocation = ndb.StringProperty()
+
+    @classmethod
+    def query_carpools_for_guest(cls, queryGuest):
+        return Carpool.query(ndb.OR(Carpool.driver == queryGuest,
+                                    Carpool.passengers.IN([queryGuest])))
+
+    @classmethod
+    def query_carpools_for_driver(cls, queryDriver):
+        return Carpool.query(Carpool.driver == queryDriver)
+
+    def seats_remaining():
+        return (driver.availableSeats - passengers.count)
 
 class Event(ndb.Model):
     name = ndb.StringProperty()
-    eventLocation = nbd.StringProperty()
+    eventLocation = ndb.GeoPtProperty()
 
     departureTime = ndb.DateTimeProperty()
-    departureLocation = nbd.StringProperty()
+    departureLocation = ndb.StringProperty()
     returnTime = ndb.DateTimeProperty()
-    returnLocation = nbd.StringProperty()
+    returnLocation = ndb.StringProperty()
 
     host = ndb.StructuredProperty(Guest)
     guests = ndb.StructuredProperty(Guest, repeated = True)
-    carpools = ndb.StructuredProperty(Carpool, repeated = True)
+    carpools = ndb.LocalStructuredProperty(Carpool, repeated = True)
+    
+    @classmethod
+    def query_events_with_host(cls, queryHost):
+        return Event.query(Event.host == queryHost)
+
+    def query_events_with_guest(cls, queryGuest):
+        return Event.query(Event.guests.IN([queryGuest]))
