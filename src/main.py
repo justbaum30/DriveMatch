@@ -312,7 +312,7 @@ class Signup(CommonHandler):
         logging.critical('here')
         event = model.Event.query_events_with_event_name(hostName, eventName).get()
         logging.critical('there')
-        #event.guests.append(guest)
+        event.guests.append(guest)
         event.put()
         logging.critical('over there')
 
