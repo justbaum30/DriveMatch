@@ -105,6 +105,10 @@ body {
 	padding:70px 0 20px 0;
 }
 
+input {
+	max-width: 600px;
+}
+
 .jumbotron {
 	background: none;
 }
@@ -112,4 +116,8 @@ body {
 .event-icon {
 	max-width:100px;
 	border-radius:50%;
+}
+
+.datetimepicker {
+	min-width: 200px;
 }

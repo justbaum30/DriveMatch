@@ -30,12 +30,32 @@ function updateProgress(newValue){
   $('.progress-bar').css('width', newValue+'%').attr('aria-valuenow', newValue); 
 }
 
+// Google places autocomplete
+var startLocation = document.getElementById('eventLocation');
+var autocompleteStart = new google.maps.places.Autocomplete(startLocation);
+
+var endLocation = document.getElementById('departureLocation');
+var autocompleteEnd = new google.maps.places.Autocomplete(endLocation);
+
 // dummy user data
 var userData = [{"personName":"Jacob","personEmail":"bsabugler@gmail.com"},{"personName":"Jacob","personEmail":"bsabugler@gmail.com"},{"personName":"Jacob","personEmail":"bsabugler@gmail.com"},{"personName":"Jacob","personEmail":"bsabugler@gmail.com"},{"personName":"Jacob","personEmail":"bsabugler@gmail.com"},{"personName":"Jacob","personEmail":"bsabugler@gmail.com"},{"personName":"Jacob","personEmail":"bsabugler@gmail.com"},{"personName":"Jacob","personEmail":"bsabugler@gmail.com"},{"personName":"Jacob","personEmail":"bsabugler@gmail.com"},{"personName":"Jacob","personEmail":"bsabugler@gmail.com"},{"personName":"Jacob","personEmail":"bsabugler@gmail.com"},{"personName":"Jacob","personEmail":"bsabugler@gmail.com"},{"personName":"Jacob","personEmail":"bsabugler@gmail.com"},{"personName":"Jacob","personEmail":"bsabugler@gmail.com"},{"personName":"Jacob","personEmail":"bsabugler@gmail.com"},{"personName":"Jacob","personEmail":"bsabugler@gmail.com"},{"personName":"Jacob","personEmail":"bsabugler@gmail.com"},{"personName":"Jacob","personEmail":"bsabugler@gmail.com"},{"personName":"Jacob","personEmail":"bsabugler@gmail.com"},{"personName":"Jacob","personEmail":"bsabugler@gmail.com"},{"personName":"Jacob","personEmail":"bsabugler@gmail.com"},{"personName":"Jacob","personEmail":"bsabugler@gmail.com"}];
 
 // Generate DataTable
 function initializeTable(data){
-	
+
+	// editor = new $.fn.dataTable.Editor( {
+ //        "ajaxUrl": "php/browsers.php",
+ //        "domTable": "#dataTable",
+ //        "fields": [ {
+ //                "label": "Browser:",
+ //                "name": "browser"
+ //            }, {
+ //                "label": "Rendering engine:",
+ //                "name": "engine"
+ //            }
+ //        ]
+ //    } );
+
   $('#guestTable').hide();
   var myColumns = [
         	{ "mDataProp": "personName" },
