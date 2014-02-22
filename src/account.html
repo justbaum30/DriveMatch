@@ -26,11 +26,12 @@
   </a>
   <div class="media-body">
     <h4 class="media-heading">{{ event.name.title() }}</h4>
-    You are a participant in a ride share to <b>{{ event.eventLocation.streetAddress }}</b>,
+    You are participating in a ride share to <b>{{ event.eventLocation.streetAddress }}</b>,
      departing on <b>{{ event.departureTime }}</b> and returning on <b>{{ event.returnTime }}</b>.
     <br><br>
+    <h5>Status: </h5>I do not currently have a ride.
     <div class="btn-group">
-  		<button type="button" class="btn btn-default change-info-button">Change My Info</button>
+  		<button type="button" class="btn btn-default change-info-button">Edit My Info</button>
   		<button type="button" class="btn btn-default leave-event-button">Leave Event</button>
 	</div>
 	<button type="button" class="btn btn-default pull-right event-details-btn">View Details</button>
@@ -74,12 +75,12 @@
     <h4 class="media-heading">{{ event.name.title() }}</h4>
     You are the coordinator for a ride share to <b>{{ event.eventLocation.streetAddress }}</b>,
      departing on <b>{{ event.departureTime }}</b> and returning on <b>{{ event.returnTime }}</b>.
-     <a href="/signup{{ event.urlsuffix }}">link</a>
     <br><br>
     <div class="btn-group">
   		<button type="button" class="btn btn-default edit-event-button">Edit Event</button>
   		<button type="button" class="btn btn-default cancel-event-button">Cancel Event</button>
-	</div>
+	   </div>
+     <a class="btn btn-info pull-right invitationButton" href="/signup{{ event.urlsuffix }}">Send Invitations</a>
 	<button type="button" class="btn btn-default pull-right event-details-btn">View Details</button>
   </div>
 
@@ -129,11 +130,11 @@
   </a>
   <div class="media-body">
     <h4 class="media-heading">{{ event.name.title() }}</h4>
-    You are a participant in a ride share to <b>{{ event.eventLocation.streetAddress }}</b>,
+    You are participating in a ride share to <b>{{ event.eventLocation.streetAddress }}</b>,
      departing on <b>{{ event.departureTime }}</b> and returning on <b>{{ event.returnTime }}</b>.
     <br><br>
     <div class="btn-group">
-  		<button type="button" class="btn btn-default change-info-button">Change My Info</button>
+  		<button type="button" class="btn btn-default change-info-button">Edit My Info</button>
   		<button type="button" class="btn btn-default leave-event-button">Leave Event</button>
 	</div>
 	<button type="button" class="btn btn-default pull-right event-details-btn">View Details</button>

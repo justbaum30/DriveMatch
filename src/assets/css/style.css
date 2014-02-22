@@ -40,9 +40,17 @@
 	.event-details-btn {
 		display:none;
 	}
+	.invitationButton {
+		float:left !important;
+		margin-top:1em;
+	}
 }
 
 /* DOM styling */
+
+.event-details-btn {
+		display:none;
+	}
 
 input, button, .btn {
 	outline: 0 !important;
