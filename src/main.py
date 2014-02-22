@@ -259,6 +259,18 @@ class Events(CommonHandler):
         self.setupUser()
         self.render('events.html')
 
+class Carpools(CommonHandler):
+    def get(self):
+        self.setupUser()
+        host = self.request.get('hostName')
+        eventName = self.request.get('eventName')
+
+        event = model.Event.query_past_event_name(hostName, eventName)
+        carpools = build_carpools_for_event(event)
+        #self.templateValues['Carpools'] = carpools
+
+        self.response.out.write(json.dumps(carpools))
+
 class Signup(CommonHandler):
 
     def get(self):
@@ -321,6 +333,7 @@ app = webapp2.WSGIApplication([
     ('/create', CreateEvent),
     ('/account', Account),
     ('/events', Events),
+    ('/carpools', Carpools),
     ('/signup', Signup),
 	('/logout', LogoutHandler),
 	('/example', HomeHandler)
