@@ -37,9 +37,9 @@ class CommonHandler(webapp2.RequestHandler):
         self.templateValues = {}
         if self.user:
             self.templateValues['signedIn'] = True
-            self.templateValues['loginUrl'] = users.create_logout_url('/')
+            self.templateValues['loginUrl'] = users.create_logout_url('/account')
         else:
-            self.templateValues['loginUrl'] = users.create_login_url('/')
+            self.templateValues['loginUrl'] = users.create_login_url('/account')
 
     def render(self,htmlFile):
         template = JINJA_ENVIRONMENT.get_template(htmlFile)
@@ -55,23 +55,23 @@ class Index(CommonHandler):
         self.setupUser()
         self.render('index.html')
 
-class CreateEvent(webapp2.RequestHandler):
+class CreateEvent(CommonHandler):
 
     def get(self):
-        template = JINJA_ENVIRONMENT.get_template('create.html')
-        self.response.write(template.render({}))
+        self.setupUser();
+        self.render('create.html')
 
-class Account(webapp2.RequestHandler):
-
-    def get(self):
-        template = JINJA_ENVIRONMENT.get_template('account.html')
-        self.response.write(template.render({}))
-
-class Events(webapp2.RequestHandler):
+class Account(CommonHandler):
 
     def get(self):
-        template = JINJA_ENVIRONMENT.get_template('events.html')
-        self.response.write(template.render({}))
+        self.setupUser();
+        self.render('account.html')
+
+class Events(CommonHandler):
+
+    def get(self):
+        self.setupUser()
+        self.render('events.html')
 
 app = webapp2.WSGIApplication([
     ('/', Index),
