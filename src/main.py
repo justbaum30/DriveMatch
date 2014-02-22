@@ -92,6 +92,7 @@ class CreateEvent(CommonHandler):
         newEvent.put()
 
 class Account(CommonHandler):
+
     def get(self):
         self.setupUser();
         self.templateValues['UserName'] = self.user.nickname()
@@ -119,16 +120,24 @@ class Events(CommonHandler):
         self.setupUser()
         self.render('events.html')
 
-class ParseCSV(CommonHandler):
-    def post(self):
-        self.setupUser()
-        logging.critical(self.request.get('filename'))
+class Signup(CommonHandler):
 
+    def get(self):
+        self.setupUser()
+        self.render('signup.html')
+
+    def post(self):
+        self.setupUser();
+
+        departureDateTime = datetime.datetime.strptime(self.request.get('departureDateTime'), dateTimeFormat)
+
+        guest = model.Guest()
+        guest.put()
 
 app = webapp2.WSGIApplication([
     ('/', Index),
     ('/create', CreateEvent),
     ('/account', Account),
     ('/events', Events),
-    ('/parsecsv', ParseCSV)
+    ('/signup', Signup)
 ], debug=True)
