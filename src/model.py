@@ -71,6 +71,7 @@ class Event(ndb.Model):
         suffix = []
         suffix.append("?eventName="+eventName)
         suffix.append("hostName="+hostName)
+        # suffix.append("date="+departureTime)
         return "&".join(suffix) 
    
     @classmethod
