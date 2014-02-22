@@ -97,13 +97,21 @@ class Account(CommonHandler):
         self.setupUser();
         self.templateValues['UserName'] = self.user.nickname()
 
-        self.templateValues['HostedEvents'] = model.Event.query_events_with_host(self.account)
-        if self.templateValues['HostedEvents'].get():
-            self.templateValues['HasEvents'] = True
+        self.templateValues['FutureHostedEvents'] = model.Event.query_future_events_with_host(self.account)
+        if self.templateValues['FutureHostedEvents'].get():
+            self.templateValues['HasFutureEvents'] = True
 
-        self.templateValues['GuestEvents'] = model.Event.query_events_with_guest(self.account)
-        if self.templateValues['GuestEvents'].get():
-            self.templateValues['HasEvents'] = True
+        self.templateValues['FutureGuestEvents'] = model.Event.query_future_events_with_guest(self.account)
+        if self.templateValues['FutureGuestEvents'].get():
+            self.templateValues['HasFutureEvents'] = True
+
+        self.templateValues['PastHostedEvents'] = model.Event.query_past_events_with_host(self.account)
+        if self.templateValues['PastHostedEvents'].get():
+            self.templateValues['HasPastEvents'] = True
+
+        self.templateValues['PastGuestEvents'] = model.Event.query_past_events_with_guest(self.account)
+        if self.templateValues['PastGuestEvents'].get():
+            self.templateValues['HasPastEvents'] = True
 
         self.render('account.html')
 

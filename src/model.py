@@ -1,5 +1,6 @@
 from google.appengine.ext import ndb
 from google.appengine.api import users
+from datetime import datetime
 
 class Account(ndb.Model):
     user = ndb.UserProperty()
@@ -66,9 +67,21 @@ class Event(ndb.Model):
     carpools = ndb.LocalStructuredProperty(Carpool, repeated = True)
     
     @classmethod
-    def query_events_with_host(cls, queryAccount):
-        return Event.query(Event.host.account == queryAccount).order(Event.departureTime)
+    def query_future_events_with_host(cls, queryAccount):
+        return Event.query(ndb.AND(Event.host.account == queryAccount,
+                                   Event.departureTime > datetime.now())).order(Event.departureTime)
 
     @classmethod
-    def query_events_with_guest(cls, queryAccount):
-        return Event.query(Event.guests.account == queryAccount).order(Event.departureTime)
+    def query_past_events_with_host(cls, queryAccount):
+        return Event.query(ndb.AND(Event.host.account == queryAccount,
+                                   Event.departureTime < datetime.now())).order(-Event.departureTime)
+
+    @classmethod
+    def query_future_events_with_guest(cls, queryAccount):
+        return Event.query(ndb.AND(Event.guests.account == queryAccount,
+                                   Event.departureTime > datetime.now())).order(Event.departureTime)
+
+    @classmethod
+    def query_past_events_with_guest(cls, queryAccount):
+        return Event.query(ndb.AND(Event.guests.account == queryAccount,
+                                   Event.departureTime < datetime.now())).order(-Event.departureTime)

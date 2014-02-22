@@ -19,7 +19,7 @@
     <h3>No events yet. <a href="./create">Create a new event?</a></h3>
 {% endif %}
 
-{% for event in GuestEvents %}
+{% for event in FutureGuestEvents %}
 <div class="media well">
   <a class="pull-left" href="#">
     <img class="media-object event-icon" src="assets/images/car.png" alt="eventType">
@@ -39,7 +39,7 @@
 </div>
 {% endfor %}
 
-{% for event in HostedEvents %}
+{% for event in FutureHostedEvents %}
 <div class="media well">
   <a class="pull-left" href="#">
     <img class="media-object event-icon" src="assets/images/create.png" alt="eventType">
@@ -106,42 +106,97 @@
 </div>
 {% endfor %}
 
-<!--
+{% if HasPastEvents %}
 <h2>Past Events</h2>
 
+{% for event in PastGuestEvents %}
 <div class="media well">
   <a class="pull-left" href="#">
-    <img class="media-object event-icon" src="assets/images/create.png" alt="eventType">
+    <img class="media-object event-icon" src="assets/images/car.png" alt="eventType">
   </a>
   <div class="media-body">
-    <h4 class="media-heading">{ Event Title }</h4>
-    You created a ride share to <b>{ Event Location }</b> on <b>{ Event Date }</b>.
+    <h4 class="media-heading">{{ event.name }}</h4>
+    You are a participant in a ride share to <b>{{ event.eventLocation.streetAddress }}</b>,
+     departing on <b>{{ event.departureTime }}</b> and returning on <b>{{ event.returnTime }}</b>.
     <br><br>
     <div class="btn-group">
-  		<button type="button" class="btn btn-default">Edit Event</button>
-  		<button type="button" class="btn btn-default">Cancel Event</button>
+  		<button type="button" class="btn btn-default">Change My Info</button>
+  		<button type="button" class="btn btn-default">Leave Event</button>
 	</div>
 	<button type="button" class="btn btn-default pull-right event-details-btn">View Details</button>
   </div>
-</div>
 
+</div>
+{% endfor %}
+
+{% for event in PastHostedEvents %}
 <div class="media well">
   <a class="pull-left" href="#">
     <img class="media-object event-icon" src="assets/images/create.png" alt="eventType">
   </a>
   <div class="media-body">
-    <h4 class="media-heading">{ Event Title }</h4>
-    You created a ride share to <b>{ Event Location }</b> on <b>{ Event Date }</b>.
+    <h4 class="media-heading">{{ event.name }}</h4>
+    You are the coordinator for a ride share to <b>{{ event.eventLocation.streetAddress }}</b>,
+     departing on <b>{{ event.departureTime }}</b> and returning on <b>{{ event.returnTime }}</b>.
     <br><br>
     <div class="btn-group">
-  		<button type="button" class="btn btn-default">Edit Event</button>
+  		<button type="button" class="btn btn-default" onclick="editEvent();">Edit Event</button>
   		<button type="button" class="btn btn-default">Cancel Event</button>
 	</div>
 	<button type="button" class="btn btn-default pull-right event-details-btn">View Details</button>
   </div>
+  <div class="edit-pane hidden">
+    <h4>Edit event details:</h4>
+    <div role="form">
+  <div class="form-group">
+    <label for="eventName">Event Title</label>
+    <input type="text" class="form-control" id="eventName" value="{{ event.name }}">
+  </div>
+  <div class="form-group">
+    <label for="departureLocation">Where are you leaving from?</label>
+    <input type="text" class="form-control" id="departureLocation" value="{{ event.departureLocation.streetAddress }}">
+  </div>
+  <div class="form-group">
+    <label for="eventLocation">Where are you headed?</label>
+    <input type="text" class="form-control" id="eventLocation" value="{{ event.eventLocation.streetAddress }}">
+  </div>
+  <div class="form-group">
+    <div class="form-inline">
+      <label for="eventDepartureTime">Departure Date & Time:</label>
+      <input type="text" class="datetimepicker form-control" id="eventDepartureTime" value="{{ event.departureTime }}">
+      <br><br>
+      <div class="form-inline">
+      <label for="eventReturnTime">Return Date & Time:</label>
+      <input type="text" class="datetimepicker form-control" id="eventReturnTime" value="{{ event.returnTime }}">
+    </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputFile">Import Contacts</label>
+    <input type="file" id="exampleInputFile">
+    <p class="help-block">Accepts contacts in .csv format</p>
+
+    <div id="upload-progress" style="width:50%;margin:0 auto;">
+    <h4>Analyzing your contacts...</h4>
+    <div class="progress progress-striped active">
+      <div class="progress-bar"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width:45%">
+        <span class="sr-only">45% Complete</span>
+      </div>
+    </div>
+    </div>
+    </div>
+
+  <div class="form-group">
+
+    <br>
+    <button type="submit" id="createSubmitButton" class="btn btn-default">Submit</button>
+  </div>
 </div>
+  </div>
 </div>
--->
+{% endfor %}
+{% endif %}
+
 </div> <!-- /row -->
 
 {% endblock %}
