@@ -260,15 +260,21 @@ class Events(CommonHandler):
         self.render('events.html')
 
 class Carpools(CommonHandler):
-    def get(self):
+    def post(self):
         self.setupUser()
-        host = self.request.get('hostName')
+        hostName = self.request.get('hostName')
         eventName = self.request.get('eventName')
 
-        event = model.Event.query_past_event_name(hostName, eventName)
-        carpools = build_carpools_for_event(event)
-        #self.templateValues['Carpools'] = carpools
+        logging.critical(hostName)
+        logging.critical(eventName)
 
+        event = model.Event.query_events_with_event_name(hostName, eventName).get()
+
+        logging.critical(event.name)
+
+        carpools = event.build_carpools_for_event()
+        #self.templateValues['Carpools'] = carpools
+        logging.critical(carpools)
         self.response.out.write(json.dumps(carpools))
 
 class Signup(CommonHandler):
