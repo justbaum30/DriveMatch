@@ -38,7 +38,7 @@ class CommonHandler(webapp2.RequestHandler):
         self.templateValues = {}
         if self.user:
             self.templateValues['signedIn'] = True
-            self.templateValues['loginUrl'] = users.create_logout_url('/account')
+            self.templateValues['loginUrl'] = users.create_logout_url('/')
            
             account = model.Account.query_account_for_user(self.user).get()
             if account:
@@ -48,7 +48,7 @@ class CommonHandler(webapp2.RequestHandler):
                 account = model.Account(user = self.user)
                 account.put()
         else:
-            self.templateValues['loginUrl'] = users.create_login_url('/')
+            self.templateValues['loginUrl'] = users.create_login_url('/account')
 
     def render(self,htmlFile):
         template = JINJA_ENVIRONMENT.get_template(htmlFile)
