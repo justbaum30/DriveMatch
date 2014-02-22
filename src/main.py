@@ -121,9 +121,24 @@ class Events(CommonHandler):
         self.setupUser()
         self.render('events.html')
 
+class Signup(CommonHandler):
+
+    def get(self):
+        self.setupUser()
+        self.render('signup.html')
+
+    def post(self):
+        self.setupUser();
+
+        departureDateTime = datetime.datetime.strptime(self.request.get('departureDateTime'), dateTimeFormat)
+
+        guest = model.Guest()
+        guest.put()
+
 app = webapp2.WSGIApplication([
     ('/', Index),
     ('/create', CreateEvent),
     ('/account', Account),
-    ('/events', Events)
+    ('/events', Events),
+    ('/signup', Signup)
 ], debug=True)
