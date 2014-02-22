@@ -22,8 +22,10 @@ $(function() {
 				returnDateTime: $('#eventReturnTime').val(),
 				guests: JSON.stringify(selectedPeople)
 			},
-			success: function() { 
-				console.log("success!"); 
+			success: function(data) { 
+				setTimeout(function() {
+					window.location = '/signup'+data;
+				}, 1000);
 			},
 			error: function(jqXHR, textStatus, errorThrown) { 
 				console.error('Failure!'); 
