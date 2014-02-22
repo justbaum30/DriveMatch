@@ -34,6 +34,7 @@ $(function() {
 			},
 			error: function(jqXHR, textStatus, errorThrown) { 
 				console.error('Failure!'); 
+				document.getElementById('successAlert').style.display="inline";
 			}
 		});
 	});
