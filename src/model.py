@@ -2,8 +2,8 @@ from google.appengine.ext import ndb
 
 
 class Guest(ndb.Model):
-    user = ndb.StringProperty()
-    key = ndb.StringProperty()
+    user = ndb.UserProperty()
+    nickname = ndb.StringProperty()
 
 class Driver(Guest):
     seats = ndb.IntegerProperty()
