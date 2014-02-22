@@ -74,6 +74,7 @@
     <h4 class="media-heading">{{ event.name }}</h4>
     You are the coordinator for a ride share to <b>{{ event.eventLocation.streetAddress }}</b>,
      departing on <b>{{ event.departureTime }}</b> and returning on <b>{{ event.returnTime }}</b>.
+     <a href="/signup{{ event.urlsuffix }}">link</a>
     <br><br>
     <div class="btn-group">
   		<button type="button" class="btn btn-default edit-event-button">Edit Event</button>

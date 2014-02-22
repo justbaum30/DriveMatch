@@ -89,6 +89,7 @@ class CreateEvent(CommonHandler):
                             host = host,
                             guests = [],
                             carpools = [])
+        newEvent.urlsuffix = newEvent.generate_url_suffix(newEvent.name, newEvent.host.nickname)
         newEvent.put()
 
 class Account(CommonHandler):

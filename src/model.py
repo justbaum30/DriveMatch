@@ -54,6 +54,7 @@ class Carpool(ndb.Model):
 
 class Event(ndb.Model):
     name = ndb.StringProperty()
+    urlsuffix = ndb.StringProperty()
 
     eventLocation = ndb.StructuredProperty(EventLocation)
     eventTime = ndb.DateTimeProperty()
@@ -66,10 +67,10 @@ class Event(ndb.Model):
     guests = ndb.StructuredProperty(Guest, repeated = True)
     carpools = ndb.LocalStructuredProperty(Carpool, repeated = True)
 
-    def generate_url_suffix(anEvent):
+    def generate_url_suffix(event, eventName, hostName):
         suffix = []
-        suffix.append("?eventName="+anEvent.name)
-        suffix.append("hostName="+anEvent.host.nickname)
+        suffix.append("?eventName="+eventName)
+        suffix.append("hostName="+hostName)
         return "&".join(suffix) 
    
     @classmethod
