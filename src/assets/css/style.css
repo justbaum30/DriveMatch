@@ -3,10 +3,10 @@
 
 /* Fonts */
 
-@font-face { font-family: Lobster; src: url('font/Lobster.otf'); }
-@font-face { font-family: Bebas; src: url('font/BebasNeueRegular.otf'); }
-@font-face { font-family: BebasBold; src: url('font/BebasNeueBold.otf'); }
-@font-face { font-family: BebasThin; src: url('font/BebasNeueThin.otf'); }
+@font-face { font-family: Lobster; src: url('fonts/Lobster.otf'); }
+@font-face { font-family: Bebas; src: url('fonts/BebasNeueRegular.otf'); }
+@font-face { font-family: BebasBold; src: url('fonts/BebasNeueBold.otf'); }
+@font-face { font-family: BebasThin; src: url('fonts/BebasNeueThin.otf'); }
 
 .bebas {font-family: 'Bebas';}
 .bebasBold {font-family: 'BebasBold';}

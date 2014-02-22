@@ -18,20 +18,22 @@
   </div>
   {% endif %}
   <div class="form-group">
-    <label for="eventName">Event Name</label>
+    <label for="eventName">What would you like to title your event?</label>
     <input type="text" class="form-control" id="eventName" placeholder="Event Name">
   </div>
   <div class="form-group">
-    <label for="eventLocation">Event Location</label>
+    <label for="eventLocation">Where are you leaving from?</label>
     <input type="text" class="form-control" id="eventLocation" placeholder="Event Location">
   </div>
   <div class="form-group">
     <div class="form-inline">
-      <label for="eventDepartureTime">Event Departure Time</label>
-      <input type="text" class="datetimepicker" id="eventDepartureTime" placeholder="Event Departure Time">
+      <label for="eventDepartureTime">Departure Date & Time:</label>
+      <input type="text" class="datetimepicker form-control" id="eventDepartureTime" placeholder="Departure Time">
 
-      <label for="eventReturnTime">Event Return Time</label>
-      <input type="text" class="datetimepicker" id="eventReturnTime" placeholder="Event Return Time">
+      <div class="pull-right">
+      <label for="eventReturnTime">Return Date & Time:</label>
+      <input type="text" class="datetimepicker form-control" id="eventReturnTime" placeholder="Return Time">
+    </div>
     </div>
   </div>
   <div class="form-group">
@@ -42,12 +44,42 @@
     <label for="exampleInputFile">Import Contacts</label>
     <input type="file" id="exampleInputFile">
     <p class="help-block">Accepts contacts in .csv format</p>
-  </div>
+
+    <div id="upload-progress" style="width:50%;margin:0 auto;">
+    <h4>Analyzing your contacts...</h4>
+    <div class="progress progress-striped active">
+      <div class="progress-bar"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width:45%">
+        <span class="sr-only">45% Complete</span>
+      </div>
+    </div>
+    </div>
+    </div>
+
   <div class="form-group">
-    <label for="guestList">Guest List</label>
-    <input type="text" class="form-control" id="guestList" placeholder="Guest List">
+
+
+
+    <div id="guestTable" class="">
+      <div id="tableWrapper">
+      <table id="dataTable" class="display" cellspacing="0" width="100%">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      </div>
+    </div>
+
+
+
+
+    <br>
+    <button type="submit" id="createSubmitButton" class="btn btn-default">Submit</button>
   </div>
-  <button type="submit" id="createSubmitButton" class="btn btn-default">Submit</button>
+  <br>
 </div>
 
 {% endblock %}
