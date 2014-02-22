@@ -50,14 +50,14 @@ button, label {
 }
 
 .navbar-default {
-	background-color: orange;
+	background-color: rgba(245,148,0,0.8);
 	border: none;
 	border-radius: 0;
 	color:white;
-	top:0;
+/*	top:0;
 	position:fixed;
 	z-index:100;
-	width:100%;
+	width:100%;*/
 }
 
 .footerNav {
@@ -68,5 +68,8 @@ button, label {
 }
 .footerNav a {
 	color:white;
-	margin-right:0;
+}
+
+.footerContainer {
+	margin:0 10px;
 }
