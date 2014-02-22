@@ -18,7 +18,6 @@ import os
 import urllib
 
 from google.appengine.api import users
-from google.appengine.api import mail
 
 import webapp2
 import jinja2
@@ -85,6 +84,9 @@ class CreateEvent(CommonHandler):
 
         departureLocation = model.EventLocation(streetAddress = self.request.get('departureLocation'))
         eventLocation = model.EventLocation(streetAddress = self.request.get('eventLocation'))
+        
+
+        logging.critical(self.request.get_all('guests'))
 
 
         host = model.Guest(account = self.account, nickname = self.user.nickname(), email = self.user.email())
@@ -96,6 +98,7 @@ class CreateEvent(CommonHandler):
                             host = host,
                             guests = [],
                             carpools = [])
+        newEvent.urlsuffix = newEvent.generate_url_suffix(newEvent.name, newEvent.host.nickname)
         newEvent.put()
 
 class Account(CommonHandler):
@@ -149,9 +152,20 @@ class Signup(CommonHandler):
 
     def post(self):
         self.setupUser();
-        departureDateTime = datetime.datetime.strptime(self.request.get('departureDateTime'), dateTimeFormat)
 
-        guest = model.Guest()
+        canDrive = self.request.get('canDrive')
+        totalSeats = self.request.get('totalSeats')
+        seatsAvailable = self.request.get('seatsAvailable')
+        milesPerGallon = self.request.get('gasMileage')
+        nickname = self.request.get('nameInput')
+        email = self.request.get('emailInput')
+
+        guest = model.Guest(email = email,
+                            nickname = nickname,
+                            canDrive = canDrive,
+                            totalSeats = totalSeats,
+                            availableSeats = availableSeats,
+                            milesPerGallon = milesPerGallon)
         guest.put()
 
 app = webapp2.WSGIApplication([
