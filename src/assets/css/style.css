@@ -91,3 +91,8 @@ body {
 .jumbotron {
 	background: none;
 }
+
+.event-icon {
+	max-width:100px;
+	border-radius:50%;
+}
