@@ -41,8 +41,6 @@ You have participated in {{ NumFutureGuestEvents }} DriveMatch events.
       <button type="button" class="btn btn-default change-info-button">Edit My Info</button>
   		<button type="button" class="btn btn-default leave-event-button">Leave Event</button>
 	</div>
-  <a class="btn btn-info pull-right invitationButton" href="/signup{{ event.urlsuffix }}">Send Invitations</a>
-	<button type="button" class="btn btn-default pull-right event-details-btn">View Details</button>
   <a class="btn btn-default pull-right invitationButton" href="/signup{{ event.urlsuffix }}">Send Invitations</a>
 
   <div class="change-info-pane hidden">
@@ -92,8 +90,6 @@ You have participated in {{ NumFutureGuestEvents }} DriveMatch events.
   		<button type="button" class="btn btn-default edit-event-button">Edit Event</button>
   		<button type="button" class="btn btn-default cancel-event-button">Cancel Event</button>
 	   </div>
-     <a class="btn btn-info pull-right invitationButton" href="/signup{{ event.urlsuffix }}">Send Invitations</a>
-	<button type="button" class="btn btn-default pull-right event-details-btn">View Details</button>
      <a class="btn btn-default pull-right invitationButton" href="/signup{{ event.urlsuffix }}">Send Invitations</a>
   </div>
 
@@ -171,45 +167,11 @@ You have participated in {{ NumFutureGuestEvents }} DriveMatch events.
   </a>
   <div class="media-body">
     <h4 class="media-heading">{{ event.name.title() }}</h4>
-    You are the coordinator for a ride share to <b>{{ event.eventLocation.streetAddress }}</b>,
-     departing on <b>{{ event.departureTime }}</b> and returning on <b>{{ event.returnTime }}</b>.
     You created a ride share to <b>{{ event.eventLocation.streetAddress }}</b>,
      which departed on <b>{{ event.departureTime }}</b> and returned on <b>{{ event.returnTime }}</b>.
     <br><br>
   		<button type="button" class="btn btn-default delete-event-button">Delete Event</button>
 	<button type="button" class="btn btn-default pull-right event-details-btn">View Details</button>
-  </div>
-  <div class="edit-pane hidden">
-    <h4>Edit event details:</h4>
-    <div role="form">
-  <div class="form-group">
-    <label for="eventName">Event Title</label>
-    <input type="text" class="form-control input-eventName" value="{{ event.name.title() }}">
-  </div>
-  <div class="form-group">
-    <label for="departureLocation">Where are you leaving from?</label>
-    <input type="text" class="form-control input-departureLocation" value="{{ event.departureLocation.streetAddress }}">
-  </div>
-  <div class="form-group">
-    <label for="eventLocation">Where are you headed?</label>
-    <input type="text" class="form-control input-eventLocation" value="{{ event.eventLocation.streetAddress }}">
-  </div>
-  <div class="form-group">
-    <div class="form-inline">
-      <label for="eventDepartureTime">Departure Date & Time:</label>
-      <input type="text" class="datetimepicker form-control input-eventDepartureTime" value="{{ event.departureTime }}">
-      <br><br>
-      <div class="form-inline">
-      <label for="eventReturnTime">Return Date & Time:</label>
-      <input type="text" class="datetimepicker form-control input-eventReturnTime" value="{{ event.returnTime }}">
-    </div>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <button type="submit" class="btn btn-default edit-event-done-button">Done</button>
-  </div>
-</div>
   <br>
   </div>
 </div>
