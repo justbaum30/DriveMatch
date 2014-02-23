@@ -10,6 +10,9 @@
 
 <div class="sidebar col-sm-4" id="sidebar-affix" data-spy="affix">
 <h2>Welcome,<br>{{ UserName }}</h2>
+<br>
+You have participated in {{ NumFutureGuestEvents }} DriveMatch events.
+<br><br>
 <a class="btn btn-default" href="/create">Create New Event</a>
 </div>
 
@@ -40,6 +43,7 @@
 	</div>
   <a class="btn btn-info pull-right invitationButton" href="/signup{{ event.urlsuffix }}">Send Invitations</a>
 	<button type="button" class="btn btn-default pull-right event-details-btn">View Details</button>
+  <a class="btn btn-default pull-right invitationButton" href="/signup{{ event.urlsuffix }}">Send Invitations</a>
 
   <div class="change-info-pane hidden">
     <div class="radio">
@@ -90,6 +94,7 @@
 	   </div>
      <a class="btn btn-info pull-right invitationButton" href="/signup{{ event.urlsuffix }}">Send Invitations</a>
 	<button type="button" class="btn btn-default pull-right event-details-btn">View Details</button>
+     <a class="btn btn-default pull-right invitationButton" href="/signup{{ event.urlsuffix }}">Send Invitations</a>
   </div>
 
   <div class="edit-pane hidden">
@@ -168,6 +173,8 @@
     <h4 class="media-heading">{{ event.name.title() }}</h4>
     You are the coordinator for a ride share to <b>{{ event.eventLocation.streetAddress }}</b>,
      departing on <b>{{ event.departureTime }}</b> and returning on <b>{{ event.returnTime }}</b>.
+    You created a ride share to <b>{{ event.eventLocation.streetAddress }}</b>,
+     which departed on <b>{{ event.departureTime }}</b> and returned on <b>{{ event.returnTime }}</b>.
     <br><br>
   		<button type="button" class="btn btn-default delete-event-button">Delete Event</button>
 	<button type="button" class="btn btn-default pull-right event-details-btn">View Details</button>
@@ -203,6 +210,7 @@
     <button type="submit" class="btn btn-default edit-event-done-button">Done</button>
   </div>
 </div>
+  <br>
   </div>
 </div>
 {% endfor %}

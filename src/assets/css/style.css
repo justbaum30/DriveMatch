@@ -1,4 +1,5 @@
 @charset "UTF-8";
+@import url(http://fonts.googleapis.com/css?family=Montserrat:400,700|Lato|PT+Sans+Narrow|Bitter|Oswald|Francois+One);
 /* CSS Document */
 
 /* Fonts */
@@ -12,6 +13,8 @@
 .bebasBold {font-family: 'BebasBold';}
 .bebasThin {font-family: 'BebasThin';}
 .lobster {font-family: 'Lobster';}
+.montes {font-family: 'Montserrat';}
+.oswald {font-family: 'Oswald';}
 
 .center {text-align:center;}
 .floatLeft {float:left;}
@@ -48,9 +51,14 @@
 
 /* DOM styling */
 
-.event-details-btn {
-		display:none;
-	}
+body {
+	background-color: rgb(249,246,242);
+	padding:70px 0 20px 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Francois One';
+}
 
 input, button, .btn {
 	outline: 0 !important;
@@ -70,18 +78,24 @@ button, label {
 */}
 
 .navbar-default {
-	background-color: rgb(255,213,115);
+	/*background-color: rgb(255,213,155);*/
+	background-color: rgb(59,91,120);
 	border: none;
 	border-radius: 0;
-	color:white;
 	top:0;
 	position:fixed;
 	z-index:100;
 	width:100%;
-	border-bottom:1px solid orange;
+	border-bottom:1px solid rgb(29,41,49);
 	-webkit-box-shadow: 0 0 7px rgba(0, 0, 0, 0.3);
     -moz-box-shadow: 0 0 7px rgba(0, 0, 0, 0.3);
     box-shadow: 0 0 7px rgba(0, 0, 0, 0.3);
+}
+.navbar-default, .navbar-brand, .navbar-brand *, .navbar-nav * {
+	color: rgb(200,200,200) !important;
+}
+.navbar-default:hover, .navbar-brand:hover, .navbar-brand *:hover, .navbar-nav *:hover {
+	color: rgb(235,235,235) !important;
 }
 
 .nav li a {
@@ -93,28 +107,22 @@ button, label {
 /* Footer Nav */
 
 .footerNav {
-	color:white;
+	color:rgb(150,150,150);
 	padding:3px 0px;
 	min-height:0px;
-	background-color:gray;
+	background-color:rgb(47,47,47);
 }
 .footerNav a {
-	color:white;
+	color:rgb(150,150,150);
 }
 
 .footerContainer {
 	margin:0 10px;
 }
 
-/* DOM Styling */
-
-body {
-	background-color: rgb(252,252,252);
-	padding:70px 0 20px 0;
-}
-
 .jumbotron {
 	background: none;
+	font-family: 'Oswald'
 }
 
 .event-icon {
@@ -127,7 +135,7 @@ body {
 }
 
 .headNum {
-	font-size: 100px;
+	font-size: 110px;
 	font-family: "lobster";
 }
 
@@ -135,7 +143,7 @@ body {
 	line-height: 100px;
 	font-size: 50px;
 	vertical-align: top;
-	font-family: "bebas";
+	font-family: "Impact";
 }
 
 .instructions {
@@ -143,17 +151,80 @@ body {
 }
 
 .instructions h2 {
-	color:rgb(247,62,62);
-	text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+/*	color:rgb(77,188,233);
+*/	text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
 }
 
-.instructions h1, .instructions .glyphicon {
+.instructions h1, .instructions .glyphicon, .instructions h2 {
 /*	font-family:'georgia';
 */
-	color:rgb(78,79,75);
+	color:rgb(29,41,49);
 
 }
 
+.btn {
+	border-radius: 3px;
+	font-family:'Lucida Grande',helvetica;
+	-webkit-box-shadow: 0 3px 0 0 rgb(30,53,83);
+  	-moz-box-shadow: 0 3px 0 0 rgb(30,53,83);
+  	box-shadow: 0 3px 0 0 rgb(30,53,83);
+  	position:relative;
+  	top:0px;
+  	margin-bottom:3px;
+}
+.btn:active, .btn:focus {
+  	top:3px;
+  	-webkit-box-shadow: none;
+  	-moz-box-shadow: none;
+  	box-shadow: none;
+}
+.btn-group {
+	vertical-align: baseline;
+}
+.btn-default {
+	background-color: rgb(100,123,153);
+  	color:white !important;
+  	border:none;
+}
+.btn-default:hover {
+	background-color: rgb(90,113,143) !important;
+}
+.btn-default:active, .btn-default:focus {
+	background-color: rgb(80,103,133) !important;
+}
+
+.btn-jumbo {
+  border-radius:4px;
+  font-family:'PT Sans Narrow',helvetica;
+  text-decoration: none;
+  background-color: rgb(90,113,143);
+  -webkit-box-shadow: 0 4px 0 0 rgb(30,53,83);
+  -moz-box-shadow: 0 4px 0 0 rgb(30,53,83);
+  box-shadow: 0 4px 0 0 rgb(30,53,83);
+  font-size: 30px !important;
+  padding:10px 30px;
+  color: #FFF !important;
+  transition:all .1s ease-in;
+}
+.btn-jumbo:hover {
+  background-color: rgb(80,103,133);
+}
+
+/*.btn-default {
+	background-color: rgb(1);
+	color:white !important;
+}
+*/
+.form-control {
+	webkit-box-shadow: none;
+ 	box-shadow: none; 
+	border-radius: 2px !important;
+}
+.form-control:focus {
+	webkit-box-shadow: none;
+ 	box-shadow: none;
+ 	background-color:rgb(253,253,255);
+}
 
 
 

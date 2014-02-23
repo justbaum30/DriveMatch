@@ -1,6 +1,6 @@
 {% extends "main.html" %}
 {% set pageTitle = "Drive Match | Sign Up" %}
-{% set pageDescription = "Sign up for Drive Match" %}
+{% set pageDescription = "Sign up for Event" %}
 
 {% block content %}
 
@@ -9,7 +9,11 @@
 
 <div role="form" class="" style="margin: 0 auto;max-width:700px;">
   <hr>
-  <p>You are invited to join the car pool hosted by {{ HostName }}. Please fill out your information below to join the car pool!</p><p>We will leave for <b>{{ Destination }}</b> from <b>{{ Origin }}</b> on <b>{{ DepartureDate }}</b>, and return on <b>{{ ReturnDate }}</b>.</p><p>To invite others to join, send them this public link:<br><span id="urlLink"></span></p>
+  <p>You are invited to join the car pool hosted by {{ HostName }}. Please fill out your information below to join the car pool!</p><p>We will leave for <b>{{ Destination }}</b> from <b>{{ Origin }}</b> on <b>{{ DepartureDate }}</b>, and return on <b>{{ ReturnDate }}</b>.</p><p>To invite others to join, send them this public link:<br><br>
+
+  <input id="urlLink" type="text" value="" onclick="this.select()" style="width:100%;" readonly>
+
+</p>
   <hr>
   	<div class="radio">
 		<label><input type="radio" name="canDrive" id="canDrive" value=true checked>I can drive.</label>
@@ -67,7 +71,7 @@
 
 var myLink = document.URL;
 
-$('#urlLink').html(myLink);
+$('#urlLink').val(myLink);
 
 </script>
 
