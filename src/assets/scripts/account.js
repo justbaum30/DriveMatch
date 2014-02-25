@@ -43,4 +43,31 @@ $(function() {
   //     }
   //   });
   // });
+
+  var numGuestEvents = $('.guestEvent').length;
+  var numHostEvents = $('.hostEvent').length;
+  var numEvents = numGuestEvents + numHostEvents;
+  document.getElementById('accountParticipatedNum').innerHTML = numGuestEvents;
+  document.getElementById('accountHostedNum').innerHTML = numHostEvents;
+  document.getElementById('accountEventNum').innerHTML = numEvents;
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

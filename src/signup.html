@@ -5,16 +5,28 @@
 {% block content %}
 
 <!-- Page Content -->
-	<h1 class="lobster" style="font-size:60px;text-align:center;">{{ EventName.title() }} Sign Up</h1>
+	<h1 class="big-header">{{ EventName.title() }} Sign Up</h1>
 
 <div role="form" class="" style="margin: 0 auto;max-width:700px;">
   <hr>
-  <p>You are invited to join the car pool hosted by {{ HostName }}. Please fill out your information below to join the car pool!</p><p>We will leave for <b>{{ Destination }}</b> from <b>{{ Origin }}</b> on <b>{{ DepartureDate }}</b>, and return on <b>{{ ReturnDate }}</b>.</p><p>To invite others to join, send them this public link:<br><br>
+  <p>You are invited to join the car pool hosted by {{ HostName }}. Please fill out your information below to join the car pool!</p>
 
-  <input id="urlLink" type="text" value="" onclick="this.select()" style="width:100%;" readonly>
+  <!-- <br>
+
+  <img class="car-icon" src="assets/images/car_icon.png" alt="car">
+
+  <br><br> -->
+
+  <p>We will leave from <b>{{ Origin }}</b> on <b>{{ DepartureDate.date() }}</b> at <b>{{ DepartureDate.time() }}</b>.
+  <br>
+  We will return from <b>{{ Destination }}</b> on <b>{{ ReturnDate.date() }}</b> at <b>{{ ReturnDate.time() }}</b>.</p>
+  <p>To invite others to join, send them this public link:<br><br>
+
+  <input id="urlLink" class="form-control" type="text" value="" onclick="this.select()" style="width:100%;cursor:default;background-color:white;" readonly>
 
 </p>
   <hr>
+    <h4>Transportation</h4>
   	<div class="radio">
 		<label><input type="radio" name="canDrive" id="canDrive" value=true checked>I can drive.</label>
 	</div>
@@ -25,7 +37,7 @@
 	<div id="canDriveInfo">
 		<div class="form-group">
 	    	<label for="totalSeats">Total Seats</label>
-	    	<input type="number" class="form-control" id="totalSeats" placeholder="Enter total seats">
+	    	<input type="number" class="form-control" id="totalSeats" placeholder="Enter total seats" value="" min="1" max="30" step="1">
   		</div>
 		<div class="form-group">
 	    	<label for="seatsAvailable">Seats Available</label>
@@ -69,9 +81,17 @@
 
 <script type="text/javascript">
 
-var myLink = document.URL;
-
-$('#urlLink').val(myLink);
+$( document ).ready(function() {
+  var myLink = document.URL;
+  $('#urlLink').val(myLink);
+  
+  // setTimeout(function () {
+  //   $('.car-icon').css("left", "85%");
+  //   setTimeout(function () {
+  //     $('.car-icon').css("left", "0px");
+  //   }, 5000);
+  // }, 2000);
+});
 
 </script>
 

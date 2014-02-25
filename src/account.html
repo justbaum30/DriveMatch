@@ -10,8 +10,25 @@
 
 <div class="sidebar col-sm-4" id="sidebar-affix" data-spy="affix">
 <h2>Welcome,<br>{{ UserName }}</h2>
-<br>
-You have participated in {{ NumFutureGuestEvents }} DriveMatch events.
+
+{% if HasFutureEvents or HasPastEvents %}
+
+You have participated in <span id="accountEventNum"></span> DriveMatch events.
+
+<br><br>
+
+<div class="eventCount participatedEvents">
+<h4>Attended</h4>
+<span id="accountParticipatedNum"></span>
+</div>
+
+<div class="eventCount hostedEvents">
+<h4>Hosted</h4>
+<span id="accountHostedNum"></span>
+</div>
+
+{% endif %}
+
 <br><br>
 <a class="btn btn-default" href="/create">Create New Event</a>
 </div>
@@ -24,7 +41,7 @@ You have participated in {{ NumFutureGuestEvents }} DriveMatch events.
 {% endif %}
 
 {% for event in FutureGuestEvents %}
-<div class="media well event">
+<div class="media well event guestEvent">
   <a class="pull-left" href="#">
     <img class="media-object event-icon" src="assets/images/car.png" alt="eventType">
   </a>
@@ -74,7 +91,7 @@ You have participated in {{ NumFutureGuestEvents }} DriveMatch events.
 {% endfor %}
 
 {% for event in FutureHostedEvents %}
-<div class="media well event">
+<div class="media well event hostEvent">
   <a class="pull-left" href="#">
     <img class="media-object event-icon" src="assets/images/create.png" alt="eventType">
   </a>
@@ -144,7 +161,7 @@ You have participated in {{ NumFutureGuestEvents }} DriveMatch events.
 <h2>Past Events</h2>
 
 {% for event in PastGuestEvents %}
-<div class="media well event">
+<div class="media well event guestEvent">
   <a class="pull-left" href="#">
     <img class="media-object event-icon" src="assets/images/car.png" alt="eventType">
   </a>
@@ -161,7 +178,7 @@ You have participated in {{ NumFutureGuestEvents }} DriveMatch events.
 {% endfor %}
 
 {% for event in PastHostedEvents %}
-<div class="media well event">
+<div class="media well event hostEvent">
   <a class="pull-left" href="#">
     <img class="media-object event-icon" src="assets/images/create.png" alt="eventType">
   </a>

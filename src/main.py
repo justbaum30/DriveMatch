@@ -1,20 +1,3 @@
-#!/usr/bin/env python
-#
-# Copyright 2007 Google Inc.
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-#
-
 FACEBOOK_APP_ID = "669092186485252"
 FACEBOOK_APP_SECRET = "abc722ce133a5aef5faada75c4cf51ed"
 
@@ -218,29 +201,37 @@ class CreateEvent(CommonHandler):
         
         self.response.out.write(json.dumps(newEvent.urlsuffix))
 
-class Account(CommonHandler):
+class AccountPage(CommonHandler):
 
     def get(self):
         self.setupUser();
-        self.templateValues['UserName'] = self.user.nickname()
 
-        self.templateValues['FutureHostedEvents'] = model.Event.query_future_events_with_host(self.account)
-        if self.templateValues['FutureHostedEvents'].get():
-            self.templateValues['HasFutureEvents'] = True
+        if self.user:
+            self.templateValues['UserName'] = self.user.nickname()
+            self.templateValues['UserEmail'] = self.user.email()
+            self.templateValues['UserAccount'] = self.account
 
-        self.templateValues['FutureGuestEvents'] = model.Event.query_future_events_with_guest(self.account)
-        if self.templateValues['FutureGuestEvents'].get():
-            self.templateValues['HasFutureEvents'] = True
+            self.templateValues['FutureHostedEvents'] = model.Event.query_future_events_with_host(self.account)
+            if self.templateValues['FutureHostedEvents'].get():
+                self.templateValues['HasFutureEvents'] = True
 
-        self.templateValues['PastHostedEvents'] = model.Event.query_past_events_with_host(self.account)
-        if self.templateValues['PastHostedEvents'].get():
-            self.templateValues['HasPastEvents'] = True
+            self.templateValues['FutureGuestEvents'] = model.Event.query_future_events_with_guest(self.account)
+            if self.templateValues['FutureGuestEvents'].get():
+                self.templateValues['HasFutureEvents'] = True
 
-        self.templateValues['PastGuestEvents'] = model.Event.query_past_events_with_guest(self.account)
-        if self.templateValues['PastGuestEvents'].get():
-            self.templateValues['HasPastEvents'] = True
+            self.templateValues['PastHostedEvents'] = model.Event.query_past_events_with_host(self.account)
+            if self.templateValues['PastHostedEvents'].get():
+                self.templateValues['HasPastEvents'] = True
 
-        self.render('account.html')
+            self.templateValues['PastGuestEvents'] = model.Event.query_past_events_with_guest(self.account)
+            if self.templateValues['PastGuestEvents'].get():
+                self.templateValues['HasPastEvents'] = True
+
+            self.render('account.html')
+
+        else:
+            loginURL = users.create_login_url('/account')
+            self.redirect(str(loginURL))
 
 class Events(CommonHandler):
     def get(self):
@@ -326,7 +317,7 @@ class Signup(CommonHandler):
 app = webapp2.WSGIApplication([
     ('/', Index),
     ('/create', CreateEvent),
-    ('/account', Account),
+    ('/account', AccountPage),
     ('/events', Events),
     ('/signup', Signup),
 	('/logout', LogoutHandler),

@@ -1,8 +1,10 @@
 $(function() {
 	$('#canDriveInfo').hide();
 	$('input[name="canDrive"]').on('change', function() {
-		if ($('#canDrive').is(':checked'))
+		if ($('#canDrive').is(':checked')) {
 			$('#canDriveInfo').fadeIn('fast');
+			$("body").animate({ scrollTop: $(document).height() }, "slow");
+		}
 		else {
 			$('#canDriveInfo').hide();
 			$('#totalSeats').val('');

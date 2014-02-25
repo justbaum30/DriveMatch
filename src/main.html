@@ -29,7 +29,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand bebas" href="/">Drive <span class="lobster">Match</span><!-- <small style="font-family:'Garamond','Bebas';font-size:40px;">r</small> --></a>
+      <a class="navbar-brand" href="/">Drive Match</span><!-- <small style="font-family:'Garamond','Bebas';font-size:40px;">r</small> --></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -38,11 +38,11 @@
         {% if signedIn %}
         <ul class="nav navbar-nav navbar-right">
           <li><a href="/account">My Account</a></li>
-          <li><a href="{{ loginUrl }}" class="btn btn-default">Logout</a></li>
+          <li><a href="{{ loginUrl }}" class="btn btn-default">logout</a></li>
         </ul>
         {% else %}
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="{{ loginUrl }}" class="btn btn-default">Login</a></li>
+          <li><a href="{{ loginUrl }}" class="btn btn-default">login</a></li>
         </ul>
         {% endif %}
       </div>
@@ -61,11 +61,22 @@
 <footer>
 <nav class="navbar navbar-fixed-bottom footerNav">
   <div class="footerContainer">
-    &copy 2014 DriveMatch.us<span class="pull-right"><a href="mailto:info@drivematchr.com">info@drivematch.us</a></span>
+    &copy 2014 DriveMatch.us<span class="pull-right"><a href="mailto:drivematch@gmail.com">drivematch@gmail.com</a></span>
   </div>
 </nav>
 </footer>
 
 {% block foot %} {% endblock %}
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48343128-1', 'drivematch.appspot.com');
+  ga('send', 'pageview');
+
+</script>
 
 </body></html>
