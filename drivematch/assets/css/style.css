@@ -16,6 +16,10 @@
 .montes {font-family: 'Montserrat';}
 .oswald {font-family: 'Oswald';}
 .sans {font-family: 'Open Sans'}
+.lato {font-family: 'Lato'}
+.franc {font-family: 'Francois One'}
+.bitter {font-family: 'Bitter'}
+.pt {font-family: 'PT Sans Narrow'}
 
 .center {text-align:center;}
 .floatLeft {float:left;}
@@ -131,14 +135,14 @@ button, label {
 /* Footer Nav */
 
 .footerNav {
-	color:rgb(150,150,150);
+	color:rgb(190,190,190);
 	padding:3px 0px;
 	min-height:0px;
 	background-color:rgb(47,47,47);
 	font-size: 12px;
 }
 .footerNav a {
-	color:rgb(150,150,150);
+	color:rgb(190,190,190);
 }
 
 .footerContainer {

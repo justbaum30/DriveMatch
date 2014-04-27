@@ -1,5 +1,5 @@
 {% extends "main.html" %}
-{% set pageTitle = "Drive Match | My Account" %}
+{% set pageTitle = "My Account" %}
 {% set pageDescription = "View account details" %}
 
 {% block content %}
@@ -13,9 +13,10 @@
 
 {% if HasFutureEvents or HasPastEvents %}
 
-You have participated in <span id="accountEventNum"></span> DriveMatch events.
+<br>
+<div style="font-size:16px">You have participated in <span id="accountEventNum"></span> <span class="">Ride Match</span> events.</div>
 
-<br><br>
+<br>
 
 <div class="eventCount participatedEvents">
 <h4>Attended</h4>
@@ -26,6 +27,8 @@ You have participated in <span id="accountEventNum"></span> DriveMatch events.
 <h4>Hosted</h4>
 <span id="accountHostedNum"></span>
 </div>
+
+<br>
 
 {% endif %}
 
@@ -49,7 +52,7 @@ You have participated in <span id="accountEventNum"></span> DriveMatch events.
     <div class="hidden eventName">{{ event.name }}</div>
     <div class="hidden hostName">{{ event.host.nickname }}</div>
     <h4 class="media-heading">{{ event.name.title() }}</h4>
-    You are participating in a ride share to <b>{{ event.eventLocation.streetAddress }}</b>,
+    You signed up for a ride share to <b>{{ event.eventLocation.streetAddress }}</b>,
      departing on <b>{{ event.departureTime }}</b> and returning on <b>{{ event.returnTime }}</b>.
     <br><br>
     

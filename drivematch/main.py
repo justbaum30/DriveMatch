@@ -5,6 +5,9 @@ import os
 import urllib
 
 from google.appengine.api import users
+
+# Switch to SendGrid for 25K emails/month free:
+# https://developers.google.com/appengine/articles/sendgrid
 from google.appengine.api import mail
 
 import facebook
@@ -37,6 +40,7 @@ class User(db.Model):
     access_token = db.StringProperty(required=True)
 
 class CommonHandler(webapp2.RequestHandler):
+
     def setupUser(self):
         self.user = users.get_current_user()
         self.templateValues = {}
@@ -233,12 +237,6 @@ class AccountPage(CommonHandler):
             loginURL = users.create_login_url('/account')
             self.redirect(str(loginURL))
 
-class Events(CommonHandler):
-    def get(self):
-        self.setupUser()
-        self.render('events.html')
-
-
 class Carpools(CommonHandler):
     def post(self):
         self.setupUser()
@@ -318,7 +316,6 @@ app = webapp2.WSGIApplication([
     ('/', Index),
     ('/create', CreateEvent),
     ('/account', AccountPage),
-    ('/events', Events),
     ('/signup', Signup),
 	('/logout', LogoutHandler),
 	('/example', HomeHandler)
